@@ -1,4 +1,4 @@
 const LoginComponent = () => {
-  return <div>LoginComponent</div>;
+  return <div>LoginComponent hej hej</div>;
 };
 export default LoginComponent;
