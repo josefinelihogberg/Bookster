@@ -15,13 +15,23 @@ const UserComponent = () => {
     fetchUsers();
     }, [ ]);
   return (
-    <div>{users.map((user) => (
-        <div key={user.username}>
-            <p>{user.username}</p>
-            <p>{user.password}</p>
-            <p>{user.role}</p>
-        </div>
+    <div>
+        <table>
+        <tbody>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
+        </tr>
+        {users.map((user) => (
+        <tr key={user.username}>
+            <td>{user.username}</td>
+            <td>{user.password}</td>
+            <td>{user.role}</td>
+        </tr>
     ))}
+    </tbody>
+    </table>
     </div>
   )
 }

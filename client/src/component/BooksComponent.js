@@ -14,13 +14,23 @@ const BooksComponent = () => {
     fetchBooks();
     }, []);
   return (
-    <div>{books.map((book) => (
-        <div key={book.title}>
-            <p>{book.title}</p>
-            <p>{book.author}</p>
-            <p>{book.quantity}</p>
-        </div>
+    <div>
+        <table>
+        <tbody>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Quantity</th>
+        </tr>
+        {books.map((book) => (
+        <tr key={book.title}>
+            <td>{book.title}</td>
+            <td>{book.author}</td>
+            <td>{book.quantity}</td>
+        </tr>
     ))}
+    </tbody>
+    </table>
     </div>
   )
 }

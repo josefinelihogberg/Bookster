@@ -34,8 +34,15 @@ const getUsers = async () => {
     return data;
 }
 
-const bookService = {
+const addBook = async (bookInfo) => {
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", bookInfo); 
+
+    return resp;
+}
+
+const adminService = {
     getUsers,
+    addBook
 };
 
-export default bookService;
+export default adminService;
