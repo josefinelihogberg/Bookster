@@ -14,7 +14,12 @@ function getUsername() {
   return getLocalJWTData().username;
 }
 
+function getUserRole() {
+    return getLocalJWTData().role; 
+}
+
 const userService = {
   getUsername,
+  getUserRole
 };
 export default userService;

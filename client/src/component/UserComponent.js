@@ -13,20 +13,18 @@ const UserComponent = () => {
         console.log(users);
     }
     fetchUsers();
-    }, [ ]);
+    }, []);
   return (
     <div>
         <table>
         <tbody>
         <tr>
             <th>Username</th>
-            <th>Password</th>
             <th>Role</th>
         </tr>
         {users.map((user) => (
         <tr key={user.username}>
             <td>{user.username}</td>
-            <td>{user.password}</td>
             <td>{user.role}</td>
         </tr>
     ))}
