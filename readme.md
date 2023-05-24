@@ -52,13 +52,13 @@ Beroende på behörighet så har användare olika tillgång till API:et.
 
 ### 1. Som gäst-, authentiserad- och administratöranvändare
 <details>
-  <summary>GET [/library/books](server/src/controller/bookController.js)</summary>
+  <summary>GET /library/books</summary>
   Responsen är en lista över böckerna och ett verisonsnummer som används vid högre betyg. Se kriterier.
 </details>
 
 <details>
   <summary>
-    GET [/library/books/search](server/src/controller/bookController.js)
+    GET /library/books/search
     { "query" }
   </summary>
   Query paramtern motsvarar en sökt boktitel.
@@ -69,7 +69,7 @@ Beroende på behörighet så har användare olika tillgång till API:et.
 
 <details>
   <summary>
-    POST [/auth/login](server/src/controller/authController.js)
+    POST /auth/login
     { "username", "password" }
   </summary>
   Username och password motsvarar giltiga inloggningsuppgifter.
@@ -83,7 +83,7 @@ Beroende på behörighet så har användare olika tillgång till API:et.
 
 <details>
   <summary>
-    POST [/auth/register](server/src/controller/authController.js)
+    POST /auth/register
     { "username", "password"}
   </summary>
   Username är unikt och kan endast förekomma en gång.
@@ -102,7 +102,7 @@ Samtliga anrop ger:
 - 
 <details>
   <summary>
-    GET [/library/profile](server/src/controller/profileController.js)
+    GET /library/profile
   </summary>
 
   Hämtar nuvarande profil för inloggad användare, info hämtas från jwt token:et. Här går det även att se köpta produkter
@@ -110,7 +110,7 @@ Samtliga anrop ger:
 
 <details>
   <summary>
-    POST [/library/user/books](server/src/controller/bookController.js)
+    POST /library/user/books
     { "title", "quantity" }
   </summary>
   "title" är case sensitive.
@@ -129,7 +129,7 @@ Samtliga anrop ger:
 
 <details>
   <summary>
-  POST [/admin/books](server/src/controller/adminController.js) { "Author", "Title", "Quantity"}
+  POST /admin/books { "Author", "Title", "Quantity"}
   </summary>
 
   Ger statuskod 201 när en bok har lagts till.
@@ -137,7 +137,7 @@ Samtliga anrop ger:
 
 <details>
   <summary>
-  PUT [/admin/books](server/src/controller/adminController.js) { "previous", "current" }
+  PUT /admin/books { "previous", "current" }
   </summary>
   Previous är en bok representerad med titel { "title" } 
   Current är den nya boken representerad med den data som önskas uppdateras {"?title", "?author", "?quantity"}
@@ -148,7 +148,7 @@ Samtliga anrop ger:
 
 <details>
   <summary>
-  DELETE [/admin/books](server/src/controller/adminController.js) { "Title" }
+  DELETE /admin/books { "Title" }
   </summary>
 
   Ger statuskod 200 när en bok har tagits bort
@@ -164,7 +164,7 @@ Samtliga anrop ger:
 
 <details>
   <summary>
-  PATCH [/admin/users](server/src/controller/adminController.js) {"username"}
+  PATCH /admin/users {"username"}
   </summary>
   Tilldelar administratör status till användaren med angivet username 
   Username är case sensitive.
@@ -176,7 +176,7 @@ Samtliga anrop ger:
 
 <details>
   <summary>
-  DELETE [/admin/users](server/src/controller/adminController.js) {"username"}
+  DELETE /admin/users {"username"}
   </summary>
   Username är case sensitive
 
