@@ -11,9 +11,10 @@ const RegisterComponent = () => {
     e.preventDefault();
 
     let res = await authService.register(credentials);
-    let text = await res.text();
+    let text = await res.json();
+    text = text.message;
 
-    setInfoMsg(text)
+    setInfoMsg(text);
   }
 
   const handleChange = ({ name, value }) => {

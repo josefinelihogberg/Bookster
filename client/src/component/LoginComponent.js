@@ -3,6 +3,7 @@ import CredentialComponent from "./CredentialComponent.js";
 import authService from "../service/authService.js";
 import memoryService from "../service/memoryService.js";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function LoginComponent() {
   const [credential, setCredential] = useState({ username: "", password: "" });
@@ -43,9 +44,11 @@ export default function LoginComponent() {
         <button data-testid="login-btn" type="submit">
           Sign in
         </button>
-        <button data-testid="proceed-btn" type="submit">
+        <Link to="/books">
+        <button data-testid="proceed-btn">
           Proceed as guest user
         </button>
+        </Link>
       </form>
     </div>
   );
