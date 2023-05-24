@@ -46,3 +46,11 @@ const adminService = {
 };
 
 export default adminService;
+
+//This should be in adminService ->
+//   .get("/users", adminController.getAllUsers) - done
+//   .post("/books", adminController.addBook) - working
+//   .put("/users", adminController.addAdmin)
+//   .put("/books", adminController.updateBook)
+//   .delete("/books", adminController.deleteBook)
+//   .delete("/users", adminController.deleteUser);
