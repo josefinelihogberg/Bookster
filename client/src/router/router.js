@@ -2,6 +2,7 @@ import LoginComponent from "../component/LoginComponent.js";
 import RegisterComponent from "../component/RegisterComponent.js";
 import ProfileComponent from "../component/ProfileComponent.js";
 import BooksComponent from "../component/BooksComponent.js";
+import UserComponent from "../component/UserComponent.js";
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path: "/books",
     element: <BooksComponent/>
+  },
+  {
+    path: "/users",
+    element: <UserComponent />
   }
 ];
 
