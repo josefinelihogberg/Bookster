@@ -1,14 +1,13 @@
-export default function CredentialComponent({ onTextChange }) {
+const CredentialComponent = ({ onTextChange, nameHolder, passwordHolder }) => {
   return (
     <div>
       <p>
-        <label>Username</label>
-        <input placeholder="Type your username..." name="username" onChange={(e) => onTextChange(e.target)} type="text" data-testid="username-field" />
+        <input name="username" onChange={(e) => onTextChange(e.target)} type="text" placeholder={nameHolder} />
       </p>
       <p>
-        <label>Password</label>
-        <input placeholder="Type your password..." name="password" onChange={(e) => onTextChange(e.target)} type="password" data-testid="password-field" />
+        <input name="password" onChange={(e) => onTextChange(e.target)} type="password" placeholder={passwordHolder} />
       </p>
     </div>
   );
-}
+};
+export default CredentialComponent;

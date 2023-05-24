@@ -1,6 +1,7 @@
 import LoginComponent from "../component/LoginComponent.js";
 import RegisterComponent from "../component/RegisterComponent.js";
 import ProfileComponent from "../component/ProfileComponent.js";
+import BooksComponent from "../component/BooksComponent.js";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
   {
     path: "/profile",
     element: <ProfileComponent />,
+  },
+  {
+    path: "/books",
+    element: <BooksComponent />,
   },
 ];
 
