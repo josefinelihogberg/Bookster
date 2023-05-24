@@ -1,3 +1,4 @@
+
 const CredentialComponent = ({onTextChange, nameHolder, passwordHolder}) => {
   return (
     <div>
@@ -11,3 +12,4 @@ const CredentialComponent = ({onTextChange, nameHolder, passwordHolder}) => {
   )
 };
 export default CredentialComponent;
+
