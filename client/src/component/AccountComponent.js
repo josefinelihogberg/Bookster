@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import userService from "../service/userService";
+import LogoutComponent from "./LogoutComponent";
 
 export default function AccountComponent() {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ export default function AccountComponent() {
   return (
     <div>
       <p>Browsing as user: {username}</p>
-      <button className="signOut-btn">Sign out</button>
+      <LogoutComponent />
     </div>
   );
 }
