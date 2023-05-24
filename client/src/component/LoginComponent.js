@@ -35,7 +35,7 @@ export default function LoginComponent() {
     <div>
       <form data-testid="login-form" onSubmit={submitHandler}>
         <h2>Login</h2>
-        <CredentialComponent onTextChange={handleChange} />
+        <CredentialComponent onTextChange={handleChange} nameHolder={"Username"} passwordHolder={"Password"}/>
         <p>{infoMessage}</p>
         <p>
           No account? Sign up <a href="register">here!</a>
