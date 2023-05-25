@@ -2,7 +2,8 @@ import AccountComponent from "./AccountComponent.js";
 import SearchComponent from "./SearchComponent.js";
 import OrderComponent from "./OrderComponent.js";
 import BooksComponent from "./BooksComponent.js";
-import UpdateBookComponent from "./UpdateBookComponent.js";
+import AddBookComponent from "./AddBookComponent.js";
+import EditBookComponent from "./EditBookComponent.js";
 
 export default function ProfileComponent() {
   return (
@@ -11,7 +12,8 @@ export default function ProfileComponent() {
       <SearchComponent />
       <BooksComponent />
       <OrderComponent />
-      <UpdateBookComponent />
+      <AddBookComponent />
+      <EditBookComponent />
     </div>
   );
 }

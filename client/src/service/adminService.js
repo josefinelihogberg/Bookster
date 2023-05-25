@@ -22,6 +22,30 @@ const buildPostFetchOptions = (body) => ({
     }
 });
 
+const buildDeleteFetchOption = (body) => ({
+    method: "DELETE", 
+    body: JSON.stringify(body),
+    headers: {
+        "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
+    }
+})
+
+const buildPatchFetchOption = (body) => ({
+    method: "PATCH", 
+    headers: {
+        "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
+    }
+
+})
+
+const buildPutFetchOption = (body) => ({
+    method: "PUT", 
+    headers: {
+        "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
+    }
+
+})
+
 const buildGetFetchOptions = () => ({
     headers: {
         "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
@@ -35,6 +59,12 @@ const performRequest = async (url, method, body) => {
         options = buildGetFetchOptions();
     } else if (method === "POST") {
         options = buildPostFetchOptions(body);
+    } else if (method === "DELETE") {
+        options = buildDeleteFetchOption(body);
+    } else if (method === "PATCH") {
+        options = buildPatchFetchOption(body);
+    } else if (method === "PUT") {
+        options = buildPutFetchOption(body);
     }
 
     return await fetch(url, options);
@@ -47,12 +77,37 @@ const getUsers = async () => {
     return data;
 }
 
+const updateUsers = async (username) => {
+    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PATCH", username); 
+    let data = await resp.json();
+
+    console.log(data);
+}
+
 const addBook = async (book) => {
     let resp = await performRequest("http://127.0.0.1:3000/admin/books", "POST", book); 
     let data = await resp.json();
 
     console.log(data);
 }
+
+const updateBook = async (book) => {
+    console.log(book);
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "PUT", book); 
+    let data = await resp.json();
+
+    console.log(data);
+}
+
+const deleteBook = async (title) => {
+    console.log(title);
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "DELETE", title); 
+    let data = await resp.json();
+
+    console.log(data);
+}
+
+
 
 // const shortPollAddBook = async (book) => {
 //     let resp = await performRequest("http://127.0.0.1:3000/admin/books", "POST", book); 
@@ -83,6 +138,9 @@ const addBook = async (book) => {
 const adminService = {
     getUsers,
     addBook,
+    updateBook,
+    deleteBook, 
+    updateUsers
     // shortPollAddBook
 };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import userService from "../service/userService";
-import LogoutComponent from "./LogoutComponent";
+import LogoutComponent from "../component/abstract/LogoutComponent";
 
 export default function AccountComponent() {
   const [username, setUsername] = useState("");
