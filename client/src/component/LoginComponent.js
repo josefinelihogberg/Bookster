@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import CredentialComponent from "./CredentialComponent.js";
 import authService from "../service/authService.js";
@@ -37,7 +36,11 @@ export default function LoginComponent() {
     <div>
       <form data-testid="login-form" onSubmit={submitHandler}>
         <h2>Login</h2>
-        <CredentialComponent onTextChange={handleChange} nameHolder={"Username"} passwordHolder={"Password"} />
+        <CredentialComponent
+          onTextChange={handleChange}
+          nameHolder={"Username"}
+          passwordHolder={"Password"}
+        />
         <p>{infoMessage}</p>
         <p>
           No account? Sign up <a href="register">here!</a>
