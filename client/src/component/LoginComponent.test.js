@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginComponent from "./LoginComponent";
+import ProfileComponent from "./ProfileComponent";
 import authService from "../service/authService";
 import memoryService from "../service/memoryService";
 
