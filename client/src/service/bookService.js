@@ -28,8 +28,10 @@ const performRequest = async (url, method, body) => {
 };
 
 async function searchBook(query) {
-  let resp = await performRequest("http://127.0.0.1:3000/library/books/search", query);
-  return resp;
+  let resp = await performRequest(`http://127.0.0.1:3000/library/books/search?q=${query}`);
+  let data = await resp.json();
+  console.log(resp);
+  return data;
 }
 
 const getBooks = async () => {
