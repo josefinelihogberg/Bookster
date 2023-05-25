@@ -17,13 +17,14 @@ export default function LoginComponent() {
 
     let data = await res.json();
 
-    setInfoMessage("Successfully logged in!");
+    if (res.status >= 400) {
+      let text = data.error;
+      setInfoMessage(text);
+    } else {
+      setInfoMessage("Successfully logged in!");
 
-    memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
+      memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
 
-    const isAuthenticated = () => memoryService.getLocalValue("JWT-TOKEN") !== null;
-
-    if (isAuthenticated) {
       setTimeout(() => navigate("/profile"), 1000);
     }
   };
@@ -42,8 +43,11 @@ export default function LoginComponent() {
           passwordHolder={"Password"}
         />
         <p>{infoMessage}</p>
-        <p>
-          No account? Sign up <a href="register">here!</a>
+        <p data-testid="sign-up">
+          No account? Sign up
+          <a data-testid="signup-link" href="register">
+            here!
+          </a>
         </p>
         <button data-testid="login-btn" type="submit">
           Sign in
