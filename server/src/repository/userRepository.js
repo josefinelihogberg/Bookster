@@ -20,7 +20,7 @@ const getUser = (username) => {
 }
 
 const getUsers = () => {
-  return getUserContext().users;
+  return getUserContext();
 }
 
 const addPurchase = (username, book) => {
@@ -60,5 +60,4 @@ const deleteUser = (user) => {
 }
 
 export default { addPurchase, searchUser, getUsers, addUser, patchUser, deleteUser, getUser };
-
 
