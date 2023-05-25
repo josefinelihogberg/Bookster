@@ -1,5 +1,18 @@
 import memoryService from "./memoryService";
 
+let itemsVersionUUID = -1;
+let startTime = Date.now;
+
+const backoff = {
+    timeout: 3000,
+    miss: {
+        min: 4, 
+        max: 10, 
+        count: 0,
+    },
+    multiplier: 2000
+}
+
 const buildPostFetchOptions = (body) => ({
     method: "POST",
     body: JSON.stringify(body),
@@ -27,36 +40,6 @@ const performRequest = async (url, method, body) => {
     return await fetch(url, options);
 }
 
-// let itemsVersionUUID = -1;
-// let startTime = Date.now;
-
-// const backoff = {
-//     timeout: 3000,
-//     miss: {
-//         min: 4, 
-//         max: 10, 
-//         count: 0,
-//     },
-//     multiplier: 2000
-// }
-
-// const shortPollBooks = async () => {
-//     let resp = await performRequest("http://127.0.0.1:3000/library/books", "GET");
-//     let data = await resp.json();
-//     console.log(data);
-
-//     if(data.version === itemsVersionUUID) {
-//         console.log("miss");
-//         if(backoff.miss.count <= backoff.miss.max) {
-//             backoff.miss.count += 1;
-//         }
-//     } else {
-//         backoff.miss.count = 0; 
-//         itemsVersionUUID = data.version;
-//         console.log(data.content);
-//     }
-// }
-
 const getBooks = async () => {
     let resp = await performRequest("http://127.0.0.1:3000/library/books", "GET");
     let data = await resp.json();
@@ -64,8 +47,35 @@ const getBooks = async () => {
     return data;
 }
 
+const shortPollGetBook = async () => {
+    let resp = await performRequest("http://127.0.0.1:3000/library/books", "GET"); 
+    let data = await resp.json();
+    if (data.version === itemsVersionUUID) {
+        console.log("miss");
+        if(backoff.miss.count <= backoff.miss.max) {
+            backoff.miss.count += 1;
+        }
+        } else {
+        backoff.miss.count = 0; 
+        itemsVersionUUID = data.version;
+        console.log(data);
+        }
+    
+    let timeoutMs = backoff.timeout;
+
+    if (backoff.miss.count > backoff.miss.min) {
+        timeoutMs = timeoutMs + (backoff.miss.count * backoff.multiplier);
+    }
+
+    console.log((Date.now()) - startTime, "ms");
+    setTimeout(shortPollGetBook, timeoutMs);
+    startTime = Date.now();
+    return data;
+}
+
 const bookService = {
-    getBooks
+    getBooks,
+    shortPollGetBook
 };
 
 export default bookService;

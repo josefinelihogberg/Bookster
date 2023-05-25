@@ -8,9 +8,10 @@ export default function ProfileComponent() {
   return (
     <div>
       <AccountComponent />
-      <BooksComponent />
       <SearchComponent />
+      <BooksComponent />
       <OrderComponent />
+      <UpdateBookComponent />
     </div>
   );
 }

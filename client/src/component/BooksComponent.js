@@ -1,13 +1,15 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import bookService from '../service/bookService.js'
+import bookService from '../service/bookService.js'; 
+import './testing.css';
 
 
 const BooksComponent = () => {
     const [ books, setBooks ] = useState([]);
     useEffect(() => {
         const fetchBooks = async () => {
-        let data = await bookService.getBooks();
+        let data = await bookService.shortPollGetBook();
+        // let data = await bookService.getBooks();
         console.log(data);
         setBooks(data);
     }
