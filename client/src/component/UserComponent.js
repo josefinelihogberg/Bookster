@@ -19,7 +19,6 @@ const UserComponent = () => {
     }, []);
   return (
     <div>
-        <AccountComponent />
         <div  className='grid'>
         <table>
         <tbody>

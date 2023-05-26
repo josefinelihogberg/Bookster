@@ -6,21 +6,24 @@ import DeleteBooksComponent from './DeleteBooksComponent'
 import EditBookComponent from './EditBookComponent'
 import SearchComponent from './SearchComponent'
 import UserComponent from './UserComponent'
+import { useState } from 'react';
 
 //Holds/shows all the component that the admin will see
 
 const AdminViewComponent = () => {
+    const [active, setActive] = useState('');
   return (
     <div>
       <AccountComponent />
       <SearchComponent />
-      <div className='grid'>
-      <BooksComponent />
-      <DeleteBooksComponent />
-      </div>
+      <button onClick={() => setActive("Books")}>Books</button>
+      <button onClick={() => setActive("Users")}>Users</button>
       <EditBookComponent />
       <AddBookComponent />
-      <UserComponent />
+      <>
+      {active === "Books" && <div className='grid'><BooksComponent /><DeleteBooksComponent /></div>}
+      {active === "Users" && <UserComponent />}
+      </>
     </div>
   )
 }
