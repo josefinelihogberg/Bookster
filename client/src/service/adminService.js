@@ -26,13 +26,16 @@ const buildDeleteFetchOption = (body) => ({
     method: "DELETE", 
     body: JSON.stringify(body),
     headers: {
+        "Content-Type": "application/json",
         "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
     }
 })
 
 const buildPatchFetchOption = (body) => ({
     method: "PATCH", 
+    body: JSON.stringify(body),
     headers: {
+        "Content-Type": "application/json",
         "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
     }
 
@@ -40,7 +43,9 @@ const buildPatchFetchOption = (body) => ({
 
 const buildPutFetchOption = (body) => ({
     method: "PUT", 
+    body: JSON.stringify(body),
     headers: {
+        "Content-Type": "application/json",
         "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN")
     }
 
@@ -74,11 +79,19 @@ const getUsers = async () => {
     let resp = await performRequest("http://127.0.0.1:3000/admin/users", "GET");
     let data = await resp.json();
     console.log(resp);
+    console.log(data);
     return data;
 }
 
 const updateUsers = async (username) => {
     let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PATCH", username); 
+    let data = await resp.json();
+
+    console.log(data);
+}
+
+const deleteUser = async (username) => {
+    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "DELETE", username); 
     let data = await resp.json();
 
     console.log(data);
@@ -94,7 +107,7 @@ const addBook = async (book) => {
 const updateBook = async (book) => {
     console.log(book);
     let resp = await performRequest("http://127.0.0.1:3000/admin/books", "PUT", book); 
-    let data = await resp.json();
+    let data = await resp.text();
 
     console.log(data);
 }
@@ -140,7 +153,8 @@ const adminService = {
     addBook,
     updateBook,
     deleteBook, 
-    updateUsers
+    updateUsers,
+    deleteUser,
     // shortPollAddBook
 };
 

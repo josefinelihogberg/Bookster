@@ -2,3 +2,18 @@ td, th {
     border: 1px solid black; 
     padding: 0px 1em 0px 1em; 
 }
+
+.grid {
+    display: flex;
+}
+
+.delete-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5em; 
+    padding: 1px; 
+}
+
+button {
+    margin: 1px; 
+}

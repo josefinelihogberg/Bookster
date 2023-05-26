@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import adminService from '../service/adminService.js';
+import AccountComponent from './AccountComponent.js';
+import DeleteUserComponent from './DeleteUserComponent.js';
 
 
 const UserComponent = () => {
@@ -9,13 +11,15 @@ const UserComponent = () => {
         const fetchUsers = async () => {
         let data = await adminService.getUsers();
         console.log(data);
-        setUsers(data);
+        setUsers(data.users);
         console.log(users);
     }
     fetchUsers();
     }, []);
   return (
     <div>
+        <AccountComponent />
+        <div  className='grid'>
         <table>
         <tbody>
         <tr>
@@ -30,6 +34,8 @@ const UserComponent = () => {
     ))}
     </tbody>
     </table>
+    <DeleteUserComponent />
+    </div>
     </div>
   )
 }

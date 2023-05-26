@@ -14,7 +14,6 @@ export default function LoginComponent() {
     event.preventDefault();
 
     let res = await authService.authenticate(credential);
-
     let data = await res.json();
 
     setInfoMessage("Successfully logged in!");

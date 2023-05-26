@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import bookService from '../service/bookService.js'; 
-import ChangeButtonComponent from './ChangeButtonComponent.js';
+import ChangeButtonComponent from './DeleteBooksComponent.js';
 import './testing.css';
 
 
@@ -17,14 +17,16 @@ const BooksComponent = () => {
     fetchBooks();
     }, []);
   return (
-    <div>
+    <div className='grid'>
         <table>
-        <tbody>
+        <thead>
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Quantity</th>
         </tr>
+        </thead>
+        <tbody>
         {books.map((book) => (
         <tr key={book.title}>
             <td>{book.title}</td>

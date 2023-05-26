@@ -6,9 +6,16 @@ import InputComponent from './abstract/InputComponent';
 const EditBookComponent = () => {
     const [ book, setBook ] = useState('');
 
-    const submitHandler = async (e) => {
-        
-        let resp = await adminService.updateBook(book);
+    const submitHandler = async () => {
+
+        let bookData = {
+            previous: {title: book.title},
+            current: {title: book.title,
+                    author: book.author,
+                    quantity: parseInt(book.quantity)}
+        }
+
+        let resp = await adminService.updateBook(bookData);
         
         console.log(resp);
         }
@@ -17,6 +24,8 @@ const EditBookComponent = () => {
     const handleChange = ({ name, value}) => {
         setBook({...book, [name]: value});
     }
+
+
 
   return (
     <div>
