@@ -19,7 +19,6 @@ export default function LoginComponent() {
     setInfoMessage("Successfully logged in!");
 
     memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
-
     const isAuthenticated = () => memoryService.getLocalValue("JWT-TOKEN") !== null;
 
     if (isAuthenticated) {

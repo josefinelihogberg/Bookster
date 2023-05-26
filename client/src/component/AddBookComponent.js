@@ -2,8 +2,9 @@ import { useState } from 'react';
 import adminService from '../service/adminService';
 import InputComponent from './abstract/InputComponent';
 
+// Will add a new book to the database with title, author and quantity
 
-const UpdateBookComponent = () => {
+const AddBookComponent = () => {
     const [ book, setBook ] = useState('');
 
     const submitHandler = async (e) => {
@@ -34,4 +35,4 @@ const UpdateBookComponent = () => {
   )
 }
 
-export default UpdateBookComponent;
+export default AddBookComponent;

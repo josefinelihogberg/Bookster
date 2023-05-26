@@ -4,6 +4,8 @@ import adminService from '../service/adminService';
 import bookService from '../service/bookService';
 import './testing.css';
 
+//Delete a book from the db when button is pushed - might need a warning/do you want to remove the book.
+
 const DeleteBooksComponent = () => {
     const [ books, setBooks ] = useState([]);
     const [ book, setBook ] = useState();

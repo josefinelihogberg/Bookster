@@ -2,6 +2,8 @@ import { useState } from 'react';
 import adminService from '../service/adminService';
 import InputComponent from './abstract/InputComponent';
 
+//Edit a book in the database
+
 
 const EditBookComponent = () => {
     const [ book, setBook ] = useState('');

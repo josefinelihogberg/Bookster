@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import adminService from '../service/adminService';
 import './testing.css';
 
+//Deletes a user from the db - might need a warning/do you want to delete user
+
 const DeleteUserComponent = () => {
     const [ usersArray, setUsersArray ] = useState([]);
     const [ user, setUser ] = useState();

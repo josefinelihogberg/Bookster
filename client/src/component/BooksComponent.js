@@ -1,9 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import bookService from '../service/bookService.js'; 
-import ChangeButtonComponent from './DeleteBooksComponent.js';
+import DeleteBooksComponent from './DeleteBooksComponent.js';
 import './testing.css';
 
+//Fetches all the books in the database and shows title, author and quantity
 
 const BooksComponent = () => {
     const [ books, setBooks ] = useState([]);
@@ -36,7 +37,7 @@ const BooksComponent = () => {
     ))}
     </tbody>
     </table>
-    <ChangeButtonComponent/>
+    <DeleteBooksComponent/>
     </div>
   )
 }
