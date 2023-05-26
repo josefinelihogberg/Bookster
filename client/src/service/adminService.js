@@ -83,8 +83,8 @@ const getUsers = async () => {
     return data;
 }
 
-const updateUsers = async (username) => {
-    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PATCH", username); 
+const promoteUser = async (username) => {
+    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PUT", username); 
     let data = await resp.json();
 
     console.log(data);
@@ -153,7 +153,7 @@ const adminService = {
     addBook,
     updateBook,
     deleteBook, 
-    updateUsers,
+    promoteUser,
     deleteUser,
     // shortPollAddBook
 };

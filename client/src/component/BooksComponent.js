@@ -37,7 +37,6 @@ const BooksComponent = () => {
     ))}
     </tbody>
     </table>
-    <DeleteBooksComponent/>
     </div>
   )
 }
