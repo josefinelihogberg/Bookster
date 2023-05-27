@@ -8,7 +8,6 @@ const AddBookComponent = () => {
     const [ book, setBook ] = useState('');
 
     const submitHandler = async (e) => {
-        
         let resp = await adminService.addBook(book);
         
         console.log(resp);

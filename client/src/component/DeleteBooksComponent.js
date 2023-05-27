@@ -34,7 +34,7 @@ const DeleteBooksComponent = () => {
     <div>
         <form className='delete-form' onSubmit={submitHandler}>
         {books.map((book) => (
-      <button key={book.title} type="submit" name="title" onClick={(e) => handleChange (e, 'value')} value={book.title}>Delete</button>))}
+      <button className='delete-btn' key={book.title} type="submit" name="title" onClick={(e) => handleChange (e, 'value')} value={book.title}>Delete</button>))}
       </form>
     </div>
   )

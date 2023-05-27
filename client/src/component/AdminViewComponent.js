@@ -3,7 +3,7 @@ import AccountComponent from './AccountComponent'
 import AddBookComponent from './AddBookComponent'
 import BooksComponent from './BooksComponent'
 import DeleteBooksComponent from './DeleteBooksComponent'
-import EditBookComponent from './EditBookComponent'
+import EditButtonComponent from './EditButtonComponent'
 import SearchComponent from './SearchComponent'
 import UserComponent from './UserComponent'
 import { useState } from 'react';
@@ -11,21 +11,28 @@ import { useState } from 'react';
 //Holds/shows all the component that the admin will see
 
 const AdminViewComponent = () => {
-    const [active, setActive] = useState('');
-  return (
-    <div>
-      <AccountComponent />
-      <SearchComponent />
-      <button onClick={() => setActive("Books")}>Books</button>
-      <button onClick={() => setActive("Users")}>Users</button>
-      <EditBookComponent />
-      <AddBookComponent />
-      <>
-      {active === "Books" && <div className='grid'><BooksComponent /><DeleteBooksComponent /></div>}
-      {active === "Users" && <UserComponent />}
-      </>
-    </div>
-  )
+    const [active, setActive] = useState('Books');
+    const [activeBook, setActiveBook] = useState('');
+    return (
+        <div>
+            <div>
+                <AccountComponent />
+                <SearchComponent />
+                <button onClick={() => setActive("Books")}>Books</button>
+                <button onClick={() => setActive("Users")}>Users</button>
+                <button onClick={() => setActiveBook("AddBook")}>Add book</button>
+
+                <>
+                    {active === "Books" && <div className='grid'><BooksComponent /><EditButtonComponent /><DeleteBooksComponent /></div>}
+                    {active === "Users" && <UserComponent />}
+                </>
+            </div>
+            <div>
+                {activeBook === "AddBook" && <AddBookComponent />}
+            </div>
+
+        </div>
+    )
 }
 
 export default AdminViewComponent
