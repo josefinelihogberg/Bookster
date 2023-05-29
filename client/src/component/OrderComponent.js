@@ -16,20 +16,15 @@ const OrderComponent = () => {
     fetchLibrary();
   }, []);
 
+  console.log(books);
+
   const buyBook = async () => {
     const body = {
       title: book,
       quantity: quantity,
     };
 
-    let resp = await fetch("http://127.0.0.1:3000/library/user/books", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + memoryService.getLocalValue("JWT_TOKEN"),
-      },
-    });
+    let resp = await bookService.buyBook(body);
   };
 
   const handleChange = (e) => {

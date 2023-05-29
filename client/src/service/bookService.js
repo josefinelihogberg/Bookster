@@ -41,5 +41,12 @@ const getBooks = async () => {
   return data;
 };
 
-const bookService = { searchBook, getBooks };
+const buyBook = async (bookInfo) => {
+  let resp = await performRequest("http://127.0.0.1:3000/library/user/books", "POST", bookInfo);
+  let data = await resp.json();
+  console.log(resp);
+  return data;
+};
+
+const bookService = { searchBook, getBooks, buyBook };
 export default bookService;
