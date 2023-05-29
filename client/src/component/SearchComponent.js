@@ -10,7 +10,7 @@ const SearchComponent = () => {
       className="search-input"
       placeholder="Search query ..."
       onChange={(event) => setQuery(event.target.value)}
-    ></input>
+    />
   );
 };
 export default SearchComponent;

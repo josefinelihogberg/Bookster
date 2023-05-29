@@ -40,9 +40,37 @@ const addBook = async (bookInfo) => {
   return resp;
 };
 
+const updateBook = async (body) => {
+  let resp = await fetch("http://127.0.0.1:3000/admin/books", {
+    method: "PUT",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN"),
+    },
+  });
+
+  return resp;
+};
+
+const deleteBook = async (body) => {
+  let resp = await fetch("http://127.0.0.1:3000/admin/books", {
+    method: "DELETE",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN"),
+    },
+  });
+
+  return resp;
+};
+
 const adminService = {
   getUsers,
   addBook,
+  updateBook,
+  deleteBook,
 };
 
 export default adminService;

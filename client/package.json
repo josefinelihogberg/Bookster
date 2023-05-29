@@ -34,10 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^authService$": "<rootDir>/config/__mocks__/authService.js"
-    }
   }
 }
