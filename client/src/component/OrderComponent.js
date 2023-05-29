@@ -11,6 +11,7 @@ const OrderComponent = () => {
     const fetchLibrary = async () => {
       let data = await bookService.getBooks();
       setBooks(data.books);
+      console.log(data.books);
     };
     fetchLibrary();
   }, []);
@@ -24,6 +25,7 @@ const OrderComponent = () => {
     };
 
     let resp = await bookService.buyBook(body);
+    console.log(resp);
   };
 
   const handleChange = (e) => {
@@ -52,18 +54,19 @@ const OrderComponent = () => {
         <button className="increase-btn" onClick={handleIncrement}>
           +
         </button>
-
-        {books.map((book) => (
-          <button
-            key={book.title}
-            type="submit"
-            name="title"
-            onClick={handleChange}
-            value={book.title}
-          >
-            Order
-          </button>
-        ))}
+        <div className="delete-form">
+          {books.map((book) => (
+            <button
+              key={book.title}
+              type="submit"
+              name="title"
+              onClick={handleChange}
+              value={book.title}
+            >
+              Order
+            </button>
+          ))}
+        </div>
       </form>
     </div>
   );

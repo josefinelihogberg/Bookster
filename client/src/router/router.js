@@ -3,6 +3,9 @@ import RegisterComponent from "../component/RegisterComponent.js";
 import ProfileComponent from "../component/ProfileComponent.js";
 import BooksComponent from "../component/BooksComponent.js";
 import UserComponent from "../component/UserComponent.js";
+import UserViewComponent from "../component/UserViewComponent.js";
+import AdminViewComponent from "../component/AdminViewComponent.js";
+import GuestViewComponent from "../component/GuestViewComponent.js";
 
 const routes = [
   {
@@ -22,12 +25,20 @@ const routes = [
     element: <ProfileComponent />,
   },
   {
-    path: "/books",
-    element: <BooksComponent />,
+    path: "/guest",
+    element: <GuestViewComponent />,
   },
   {
     path: "/users",
     element: <UserComponent />,
+  },
+  {
+    path: "/user/profile",
+    element: <UserViewComponent />,
+  },
+  {
+    path: "/admin/profile",
+    element: <AdminViewComponent />,
   },
 ];
 

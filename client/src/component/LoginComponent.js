@@ -4,6 +4,7 @@ import authService from "../service/authService.js";
 import memoryService from "../service/memoryService.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import userService from "../service/userService.js";
 
 export default function LoginComponent() {
   const [credential, setCredential] = useState({ username: "", password: "" });
@@ -24,8 +25,12 @@ export default function LoginComponent() {
       setInfoMessage("Successfully logged in!");
 
       memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
-
-      setTimeout(() => navigate("/profile"), 1000);
+      const role = userService.getUserRole();
+      if (role === "ADMIN") {
+        setTimeout(() => navigate("/admin/profile"), 1000);
+      } else if (role === "USER") {
+        setTimeout(() => navigate("/user/profile"), 1000);
+      }
     }
   };
 
@@ -52,7 +57,7 @@ export default function LoginComponent() {
         <button data-testid="login-btn" type="submit">
           Sign in
         </button>
-        <Link to="/books">
+        <Link to="/guest">
           <button data-testid="proceed-btn">Proceed as guest user</button>
         </Link>
       </form>

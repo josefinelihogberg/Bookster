@@ -2,7 +2,9 @@ import { useState } from "react";
 import adminService from "../service/adminService";
 import InputComponent from "./abstract/InputComponent";
 
-const AddBookComponent = () => {
+// Will add a new book to the database with title, author and quantity
+
+const AddBookComponent = ({ removeBox }) => {
   const [book, setBook] = useState("");
 
   const submitHandler = async (e) => {
@@ -25,7 +27,14 @@ const AddBookComponent = () => {
         <InputComponent fieldName="Quantity" customName="quantity" onTextChange={handleChange} />
 
         <button type="submit">Save changes</button>
-        <button type="reset">Discard changes</button>
+        <button
+          type="reset"
+          onClick={(e) => {
+            removeBox();
+          }}
+        >
+          Discard changes
+        </button>
       </form>
     </div>
   );

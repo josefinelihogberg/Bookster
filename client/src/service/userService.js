@@ -17,6 +17,7 @@ function getUsername() {
 function getUserRole() {
   return getLocalJWTData().role;
 }
+
 const buildGetFetchOptions = () => ({
   headers: {
     "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN"),

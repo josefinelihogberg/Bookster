@@ -1,10 +1,9 @@
 import AccountComponent from "./AccountComponent.js";
 import SearchComponent from "./SearchComponent.js";
-import OrderComponent from "./OrderComponent.js";
+// import OrderComponent from "./OrderComponent.js";
 import BooksComponent from "./BooksComponent.js";
 import AddBookComponent from "./AddBookComponent.js";
-import EditBookComponent from "./EditBookComponent.js";
-import PurchaseComponent from "./PurchaseComponent.js";
+import EditButtonComponent from "./EditButtonComponent.js";
 
 export default function ProfileComponent() {
   return (
@@ -12,10 +11,10 @@ export default function ProfileComponent() {
       <AccountComponent />
       <SearchComponent />
       <BooksComponent />
-      <OrderComponent />
+      {/* <OrderComponent /> */}
       <AddBookComponent />
-      <EditBookComponent />
-      <PurchaseComponent />
+      {/* <EditBookComponent /> */}
+      <EditButtonComponent />
     </div>
   );
 }

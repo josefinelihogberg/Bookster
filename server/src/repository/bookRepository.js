@@ -17,10 +17,12 @@ const getBook = (title) => {
 };
 
 const searchBooks = (query) => {
+  const ctx = getBookContext();
   query = query.toLowerCase();
-  return getBookContext().books.filter((book) => {
+  const results = getBookContext().books.filter((book) => {
     return (book.title + " " + book.author).toLowerCase().includes(query);
   });
+  return { books: results, version: ctx.version };
 };
 
 const getBooks = () => {
@@ -47,10 +49,11 @@ const patchBook = (oldBook, newBook) => {
 
 const deleteBook = (book) => {
   const ctx = getBookContext();
+  const item = ctx.books.find((entry) => entry.title === book.title);
   ctx.books = ctx.books.filter((entry) => entry.title !== book.title);
   ctx.version = crypto.randomUUID();
 
-  return ctx;
+  return { ctx, item };
 };
 
 export default { getBooks, searchBooks, getBook, addBook, patchBook, deleteBook };

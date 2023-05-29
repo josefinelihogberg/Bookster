@@ -1,3 +1,5 @@
+//writes out the inputs takes in the value of the username and password
+
 const CredentialComponent = ({ onTextChange, nameHolder, passwordHolder }) => {
   return (
     <div>

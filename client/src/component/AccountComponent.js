@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import userService from "../service/userService";
 import LogoutComponent from "../component/abstract/LogoutComponent";
 
+//Shows the role and username of the user logged in
+
 export default function AccountComponent() {
   const [username, setUsername] = useState("");
   const [userRole, setUserRole] = useState("");

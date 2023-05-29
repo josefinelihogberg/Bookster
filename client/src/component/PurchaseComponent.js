@@ -10,11 +10,10 @@ const PurchaseComponent = () => {
 
     const fetchUsers = async () => {
       let data = await userService.getUsers(username);
-      console.log(data);
       setPurchases(data.user.purchases);
     };
     fetchUsers();
-  }, []);
+  }, [username]);
   console.log(purchases);
   return (
     <div>

@@ -1,7 +1,9 @@
-const InputComponent = ({ fieldName, onTextChange, customName }) => {
+const InputComponent = ({ fieldName, onTextChange, customName, oldName }) => {
   return (
     <div>
-      <label>{fieldName}</label>
+      <label>
+        {fieldName} {oldName}
+      </label>
       <input name={customName} type="text" onChange={(e) => onTextChange(e.target)} />
     </div>
   );
