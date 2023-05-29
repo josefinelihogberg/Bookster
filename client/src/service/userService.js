@@ -35,7 +35,6 @@ const performRequest = async (url, method, body) => {
 const getUsers = async () => {
   let resp = await performRequest("http://127.0.0.1:3000/library/profile", "GET");
   let data = await resp.json();
-  console.log(resp);
   return data;
 };
 

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import userService from "../service/adminService";
+import userService from "../service/userService";
 
 const PurchaseComponent = () => {
   const [purchases, setPurchases] = useState([]);
-  const [user, setUser] = useState();
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
+    setUsername(userService.getUsername());
+
     const fetchUsers = async () => {
-      let data = await userService.getUsers();
+      let data = await userService.getUsers(username);
       console.log(data);
-      setPurchases(data.users[0].purchases);
+      setPurchases(data.user.purchases);
     };
     fetchUsers();
   }, []);
