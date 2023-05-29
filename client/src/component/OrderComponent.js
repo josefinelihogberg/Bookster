@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import bookService from "../service/bookService";
 import "./testing.css";
-import memoryService from "../service/memoryService";
 
 const OrderComponent = () => {
   const [quantity, setQuantity] = useState(0);

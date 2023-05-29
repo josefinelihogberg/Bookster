@@ -6,6 +6,8 @@ import adminService from "../service/adminService.js";
 
 const BooksComponent = () => {
   const [books, setBooks] = useState([]);
+  const [query, setQuery] = useState("");
+
   useEffect(() => {
     const fetchBooks = async () => {
       // let data = await bookService.shortPollGetBook();
@@ -25,9 +27,16 @@ const BooksComponent = () => {
     setBooks(updatedBooks);
   };
 
-  const editBook = async (bookTitle) => {};
+  const editBook = async () => {};
+
   return (
     <div>
+      <input
+        type="text"
+        className="search-input"
+        placeholder="Search query ..."
+        onChange={(event) => setQuery(event.target.value)}
+      />
       <table>
         <thead>
           <tr>
@@ -38,18 +47,22 @@ const BooksComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
-            <tr key={book.title}>
-              <td>{book.title}</td>
-              <td>{book.author}</td>
-              <td>{book.quantity}</td>
+          {books
+            .filter(
+              (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
+            )
+            .map((book) => (
+              <tr key={book.title}>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.quantity}</td>
 
-              <td>
-                <button onClick={() => editBook(book.title)}>Edit</button>
-                <button onClick={() => deleteBook(book.title)}>Delete</button>
-              </td>
-            </tr>
-          ))}
+                <td>
+                  <button onClick={() => editBook(book.title)}>Edit</button>
+                  <button onClick={() => deleteBook(book.title)}>Delete</button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
