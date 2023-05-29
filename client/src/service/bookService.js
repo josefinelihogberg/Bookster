@@ -31,7 +31,7 @@ const buildGetFetchOptions = () => ({
 const performRequest = async (url, method, body) => {
     let options = undefined;
 
-    if(method === "GET") {
+    if (method === "GET") {
         options = buildGetFetchOptions();
     } else if (method === "POST") {
         options = buildPostFetchOptions(body);
@@ -47,6 +47,13 @@ const getBooks = async () => {
     return data;
 }
 
+const buyBook = async (bookInfo) => {
+    let resp = await performRequest("http://127.0.0.1:3000/library/user/books", "POST", bookInfo);
+    let data = await resp.json();
+    console.log(resp);
+    return data;
+};
+
 // const shortPollGetBook = async () => {
 //     let resp = await performRequest("http://127.0.0.1:3000/library/books", "GET"); 
 //     let data = await resp.json();
@@ -60,7 +67,7 @@ const getBooks = async () => {
 //         itemsVersionUUID = data.version;
 //         console.log(data);
 //         }
-    
+
 //     let timeoutMs = backoff.timeout;
 
 //     if (backoff.miss.count > backoff.miss.min) {
@@ -75,6 +82,7 @@ const getBooks = async () => {
 
 const bookService = {
     getBooks,
+    buyBook
     // shortPollGetBook
 };
 

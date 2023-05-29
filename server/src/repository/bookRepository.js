@@ -5,8 +5,8 @@ const books = JSON.parse(fs.readFileSync("./src/config/books.json", "utf8"));
 let bookContexts = undefined;
 
 const getBookContext = () => {
-  if(bookContexts === undefined) {
-    bookContexts = {version: -1, books: Array.from(books)};
+  if (bookContexts === undefined) {
+    bookContexts = { version: -1, books: Array.from(books) };
   }
 
   return bookContexts;
@@ -25,7 +25,7 @@ const searchBooks = (query) => {
 }
 
 const getBooks = () => {
-  return getBookContext().books;
+  return getBookContext();
 }
 
 const addBook = (book) => {
@@ -38,7 +38,7 @@ const addBook = (book) => {
 
 const patchBook = (oldBook, newBook) => {
   const ctx = getBookContext();
-  ctx.books = ctx.books.map(entry => entry.title == oldBook.title ? {...oldBook, ...newBook} : entry);
+  ctx.books = ctx.books.map(entry => entry.title == oldBook.title ? { ...oldBook, ...newBook } : entry);
   ctx.version = crypto.randomUUID();
 
   return ctx;
@@ -52,6 +52,6 @@ const deleteBook = (book) => {
   return ctx;
 }
 
-export default {getBooks, searchBooks, getBook, addBook, patchBook, deleteBook };
+export default { getBooks, searchBooks, getBook, addBook, patchBook, deleteBook };
 
 

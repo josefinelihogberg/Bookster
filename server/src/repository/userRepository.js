@@ -5,8 +5,8 @@ const users = JSON.parse(fs.readFileSync("./src/config/users.json", "utf8"));
 let userContext = undefined
 
 const getUserContext = () => {
-  if(userContext === undefined) {
-    userContext = {version: -1, users: Array.from(users)};
+  if (userContext === undefined) {
+    userContext = { version: -1, users: Array.from(users) };
   }
 
   return userContext;
@@ -25,11 +25,11 @@ const getUsers = () => {
 
 const addPurchase = (username, book) => {
   const user = getUser(username);
-  if(user.purchases === undefined) {
+  if (user.purchases === undefined) {
     user.purchases = [];
   }
   user.purchases.push(book);
-  
+
   const ctx = getUserContext();
   ctx.version = crypto.randomUUID();
   return ctx;
@@ -45,7 +45,7 @@ const addUser = (user) => {
 
 const patchUser = (username, user) => {
   const ctx = getUserContext();
-  ctx.users = ctx.users.map(entry => entry.username === username ? {...user} : entry);
+  ctx.users = ctx.users.map(entry => entry.username === username ? { ...user } : entry);
   ctx.version = crypto.randomUUID();
 
   return ctx;

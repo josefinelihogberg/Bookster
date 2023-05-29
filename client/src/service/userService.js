@@ -15,11 +15,33 @@ function getUsername() {
 }
 
 function getUserRole() {
-    return getLocalJWTData().role; 
+  return getLocalJWTData().role;
 }
+
+const buildGetFetchOptions = () => ({
+  headers: {
+    "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN"),
+  },
+});
+
+const performRequest = async (url, method, body) => {
+  let options = undefined;
+
+  if (method === "GET") {
+    options = buildGetFetchOptions();
+  }
+
+  return await fetch(url, options);
+};
+const getUsers = async () => {
+  let resp = await performRequest("http://127.0.0.1:3000/library/profile", "GET");
+  let data = await resp.json();
+  return data;
+};
 
 const userService = {
   getUsername,
-  getUserRole
+  getUserRole,
+  getUsers
 };
 export default userService;

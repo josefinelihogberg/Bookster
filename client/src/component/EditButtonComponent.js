@@ -17,7 +17,7 @@ const EditButtonComponent = () => {
     const fetchLibrary = async () => {
       let data = await bookService.getBooks();
       console.log(data)
-      setBooks(data);
+      setBooks(data.books);
     }
     fetchLibrary();
   }, []);
@@ -65,7 +65,7 @@ const EditButtonComponent = () => {
       {activeEdit === "EditBooks" && <div className='position'>
         <form onSubmit={submitHandler}>
           <h3>Edit Book</h3>
-          <InputComponent oldName={oldBook.title} fieldName="Title" customName="title" onTextChange={handleChange} />
+          <InputComponent oldName={"/  " + oldBook.title} fieldName="Title" customName="title" onTextChange={handleChange} />
           <InputComponent oldName={oldBook.author} fieldName="Author" customName="author" onTextChange={handleChange} />
           <InputComponent oldName={oldBook.quantity} fieldName="Quantity" customName="quantity" onTextChange={handleChange} />
 
