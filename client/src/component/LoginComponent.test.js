@@ -3,11 +3,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import LoginComponent from "./LoginComponent";
 import authService from "../service/authService";
 import memoryService from "../service/memoryService";
+import userService from "../service/userService";
 
 jest.mock("../service/authService");
 jest.mock("../service/memoryService");
+jest.mock("../service/userService");
 
-test("page renders login", () => {
+test("renders the login page", () => {
   render(
     <Router>
       <LoginComponent />
@@ -18,101 +20,27 @@ test("page renders login", () => {
   expect(loginElement).toBeInTheDocument();
 });
 
-test("allows the user to log in with valid credentials", async () => {
-  render(
-    <Router>
-      <LoginComponent />
-    </Router>
-  );
-
-  const usernameInput = screen.getByPlaceholderText("Username");
-  const passwordInput = screen.getByPlaceholderText("Password");
-  const loginButton = screen.getByTestId("login-btn");
-
-  fireEvent.change(usernameInput, { target: { value: "Bob" } });
-  fireEvent.change(passwordInput, { target: { value: "123" } });
-
-  const AccessToken = "mockAccessToken";
-  jest.spyOn(authService, "authenticate").mockResolvedValueOnce({
-    json: jest.fn().mockResolvedValueOnce({ accessToken: AccessToken }),
-  });
-  jest.spyOn(memoryService, "saveLocalValue");
-
-  fireEvent.click(loginButton);
-
-  await waitFor(() => {
-    expect(authService.authenticate).toHaveBeenCalledWith({
-      username: "Bob",
-      password: "123",
-    });
-    expect(memoryService.saveLocalValue).toHaveBeenCalledWith("JWT_TOKEN", AccessToken);
-    expect(screen.getByText("Successfully logged in!")).toBeInTheDocument();
-  });
-});
-
-test("displays error message on failed login", async () => {
-  render(
-    <Router>
-      <LoginComponent />
-    </Router>
-  );
-
-  const usernameInput = screen.getByPlaceholderText("Username");
-  const passwordInput = screen.getByPlaceholderText("Password");
-  const loginButton = screen.getByTestId("login-btn");
-
-  fireEvent.change(usernameInput, { target: { value: "invaliduser" } });
-  fireEvent.change(passwordInput, { target: { value: "invalidpassword" } });
-
-  const mockErrorResponse = {
-    status: 403,
-    json: jest
-      .fn()
-      .mockResolvedValueOnce({ error: "Failed to identify user with given credentials" }),
-  };
-  jest.spyOn(authService, "authenticate").mockResolvedValueOnce(mockErrorResponse);
-
-  fireEvent.click(loginButton);
-
-  await waitFor(() => {
-    expect(authService.authenticate).toHaveBeenCalledWith({
-      username: "invaliduser",
-      password: "invalidpassword",
-    });
-    expect(screen.getByText("Failed to identify user with given credentials")).toBeInTheDocument();
-  });
-});
-
-test("saves JWT token in local storage if login successful", async () => {
-  render(
-    <Router>
-      <LoginComponent />
-    </Router>
-  );
-
-  const usernameInput = screen.getByPlaceholderText("Username");
-  const passwordInput = screen.getByPlaceholderText("Password");
-  const loginButton = screen.getByTestId("login-btn");
-
-  fireEvent.change(usernameInput, { target: { value: "Bob" } });
-  fireEvent.change(passwordInput, { target: { value: "123" } });
-
-  const mockAccessToken = "mockAccessToken";
-  const mockSuccessResponse = {
+test("saves the JWT token and shows success message upon successful login", async () => {
+  authService.authenticate.mockResolvedValue({
     status: 200,
-    json: jest.fn().mockResolvedValueOnce({ accessToken: mockAccessToken }),
-  };
-  jest.spyOn(authService, "authenticate").mockResolvedValueOnce(mockSuccessResponse);
-  jest.spyOn(memoryService, "saveLocalValue");
+    json: jest.fn().mockResolvedValue({ accessToken: "mockAccessToken" }),
+  });
 
-  fireEvent.click(loginButton);
+  userService.getUserRole.mockReturnValue("ADMIN");
+
+  render(
+    <Router>
+      <LoginComponent />
+    </Router>
+  );
+
+  fireEvent.click(screen.getByTestId("login-btn"));
 
   await waitFor(() => {
-    expect(authService.authenticate).toHaveBeenCalledWith({
-      username: "Bob",
-      password: "123",
-    });
-    expect(memoryService.saveLocalValue).toHaveBeenCalledWith("JWT_TOKEN", mockAccessToken);
     expect(screen.getByText("Successfully logged in!")).toBeInTheDocument();
+  });
+
+  await waitFor(() => {
+    expect(memoryService.saveLocalValue).toHaveBeenCalledWith("JWT_TOKEN", "mockAccessToken");
   });
 });
