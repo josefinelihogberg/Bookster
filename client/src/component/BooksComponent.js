@@ -41,9 +41,9 @@ const BooksComponent = () => {
         <table>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Quantity</th>
+              <th>Book title</th>
+              <th>Book author</th>
+              <th>Availability</th>
               {/* <th>Actions</th> */}
             </tr>
           </thead>
@@ -56,7 +56,7 @@ const BooksComponent = () => {
                 <tr key={book.title}>
                   <td>{book.title}</td>
                   <td>{book.author}</td>
-                  <td>{book.quantity}</td>
+                  <td>{book.quantity === 0 ? "Out of Stock" : book.quantity + " left"}</td>
                   {/* <td>
                                         <button onClick={() => deleteBook(book.title)}>Delete</button>
                                     </td> */}
