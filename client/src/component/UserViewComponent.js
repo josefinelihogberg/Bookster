@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AccountComponent from "./AccountComponent";
 import bookService from "../service/bookService.js";
-import "./testing.css";
+import "./main.css";
+import HeaderComponent from "./HeaderComponent";
 
 const UserViewComponent = () => {
   const [books, setBooks] = useState([]);
@@ -50,9 +51,10 @@ const UserViewComponent = () => {
   };
 
   return (
-    <div>
+    <div className="page-container">
+      <HeaderComponent />
       <AccountComponent />
-      <div>
+      <div className="center margin-left">
         <input
           type="text"
           className="search-input"

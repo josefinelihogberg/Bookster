@@ -1,13 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import bookService from "../service/bookService.js";
-import "./testing.css";
+import AccountComponent from "./AccountComponent.js";
+import "./main.css";
+import AddBookComponent from "./AddBookComponent.js";
+import PurchaseComponent from "./PurchaseComponent.js";
+import HeaderComponent from "./HeaderComponent.js";
+import EditBooksComponent from "./EditBooksComponent.js";
+import DeleteBooksComponent from "./DeleteBooksComponent.js";
+import { Link } from "react-router-dom";
 
 const AdminBooksComponent = () => {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
   const [quantity, setQuantity] = useState({});
   const [book, setBook] = useState();
+  const [activeBook, setActiveBook] = useState("");
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -47,65 +55,91 @@ const AdminBooksComponent = () => {
       }));
     }
   };
+
+  const removePopUp = () => {
+    setActiveBook("");
+  };
   return (
-    <div>
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search query ..."
-        onChange={(event) => setQuery(event.target.value)}
-      />
-      <div className="grid">
-        <table>
-          <thead>
-            <tr>
-              <th>Book title</th>
-              <th>Book author</th>
-              <th>Availability</th>
-              <th>Order</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books
-              .filter(
-                (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
-              )
-              .map((book) => (
-                <tr key={book.title}>
-                  <td>{book.title}</td>
-                  <td>{book.author}</td>
-                  <td>{book.quantity === 0 ? "Out of Stock" : book.quantity + " left"}</td>
-                  <td>
-                    <form className="order-form" onSubmit={buyBook}>
-                      <button
-                        className="reduce-btn"
-                        onClick={(e) => handleDecrement(book.title, e)}
-                      >
-                        -
-                      </button>
-                      {quantity[book.title] || 0}
-                      <button
-                        className="increase-btn"
-                        onClick={(e) => handleIncrement(book.title, e)}
-                      >
-                        +
-                      </button>
-                      <button
-                        key={book.title}
-                        type="submit"
-                        name="title"
-                        onClick={handleChange}
-                        value={book.title}
-                        disabled={book.quantity === 0}
-                      >
-                        Order
-                      </button>
-                    </form>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+    <div className="page-container">
+      <HeaderComponent />
+      <AccountComponent />
+      <div className="center margin-left">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search query ..."
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <button className="addbook-btn button-effect" onClick={() => setActiveBook("AddBook")}>
+          Add book
+        </button>
+        <Link to="/admin/books">
+          <button className="addbook-btn button-effect">Books</button>
+        </Link>
+        <Link to="/admin/users">
+          <button className="addbook-btn button-effect">Users</button>
+        </Link>
+        <div className="grid">
+          <table>
+            <thead>
+              <tr>
+                <th>Book title</th>
+                <th>Book author</th>
+                <th>Availability</th>
+                <th>Order</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books
+                .filter(
+                  (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
+                )
+                .map((book) => (
+                  <tr key={book.title}>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>{book.quantity === 0 ? "Out of Stock" : book.quantity + " left"}</td>
+                    <td>
+                      <form className="order-form" onSubmit={buyBook}>
+                        <button
+                          className="reduce-btn"
+                          onClick={(e) => handleDecrement(book.title, e)}
+                        >
+                          -
+                        </button>
+                        {quantity[book.title] || 0}
+                        <button
+                          className="increase-btn"
+                          onClick={(e) => handleIncrement(book.title, e)}
+                        >
+                          +
+                        </button>
+                        <button
+                          key={book.title}
+                          className="btn-order-column"
+                          type="submit"
+                          name="title"
+                          onClick={handleChange}
+                          value={book.title}
+                          disabled={book.quantity === 0}
+                        >
+                          Order
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+          <div className="grid">
+            <EditBooksComponent />
+            <DeleteBooksComponent />
+          </div>
+        </div>
+        <div>
+          {activeBook === "AddBook" && <AddBookComponent removeBox={removePopUp} />}
+          <PurchaseComponent />
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import bookService from "../service/bookService.js";
-import "./testing.css";
+import "./main.css";
 
 //Fetches all the books in the database and shows title, author and quantity
 
@@ -11,7 +11,9 @@ const BooksComponent = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      let data = await bookService.getBooks();
+      let data = await bookService.shortPollGetBook();
+      // let data = await bookService.getBooks();
+      console.log(data);
       setBooks(data.books);
     };
     fetchBooks();
@@ -25,13 +27,13 @@ const BooksComponent = () => {
         placeholder="Search query ..."
         onChange={(event) => setQuery(event.target.value)}
       />
-      <div className="grid">
+      <div className="grid guest-table">
         <table>
           <thead>
             <tr>
-              <th>Book title</th>
-              <th>Book author</th>
-              <th>Availability</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Quantity</th>
             </tr>
           </thead>
           <tbody>
@@ -54,3 +56,6 @@ const BooksComponent = () => {
 };
 
 export default BooksComponent;
+
+//GET /library/books
+// Responsen är en lista över böckerna och ett verisonsnummer som används vid högre betyg. Se kriterier.

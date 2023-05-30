@@ -1,18 +1,20 @@
 import React from "react";
 import AccountComponent from "./AccountComponent";
 import AddBookComponent from "./AddBookComponent";
-import AdminBooksComponent from "./AdminBooksComponent";
+import BooksComponent from "./BooksComponent";
 import DeleteBooksComponent from "./DeleteBooksComponent";
-import EditButtonComponent from "./EditButtonComponent";
+import EditButtonComponent from "./EditBooksComponent";
 import SearchComponent from "./SearchComponent";
 import UserComponent from "./UserComponent";
 import { useState } from "react";
 import PurchaseComponent from "./PurchaseComponent";
+import OrderComponent from "./OrderComponent";
 
 //Holds/shows all the component that the admin will see
+//user.purchases === undefined ? "0" : user.purchases.length
 
 const AdminViewComponent = () => {
-  const [active, setActive] = useState("Books");
+  const [active, setActive] = useState("Books" || "Users");
   const [activeBook, setActiveBook] = useState("");
 
   const removePopUp = () => {
@@ -30,7 +32,8 @@ const AdminViewComponent = () => {
         <>
           {active === "Books" && (
             <div className="grid">
-              <AdminBooksComponent />
+              <BooksComponent />
+              <OrderComponent />
               <EditButtonComponent />
               <DeleteBooksComponent />
             </div>

@@ -15,10 +15,12 @@ export default function AccountComponent() {
 
   return (
     <div>
-      <p>
-        Browsing as {userRole}: {username}
-      </p>
-      <LogoutComponent />
+      <div className="grid align-right">
+        <p className="account-text">
+          Browsing as {userRole}: {username}
+        </p>
+        <LogoutComponent />
+      </div>
     </div>
   );
 }

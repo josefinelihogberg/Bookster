@@ -3,24 +3,24 @@
 const CredentialComponent = ({ onTextChange, nameHolder, passwordHolder }) => {
   return (
     <div>
-      <div>
-        <p>Username</p>
+      <p>
         <input
+          className="login-input"
           name="username"
           onChange={(e) => onTextChange(e.target)}
           type="text"
           placeholder={nameHolder}
         />
-      </div>
-      <div>
-        <p>Password</p>
+      </p>
+      <p>
         <input
+          className="login-input"
           name="password"
           onChange={(e) => onTextChange(e.target)}
           type="password"
           placeholder={passwordHolder}
         />
-      </div>
+      </p>
     </div>
   );
 };

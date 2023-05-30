@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import adminService from "../service/adminService.js";
 import DeleteUserComponent from "./DeleteUserComponent.js";
 import PromoteUserComponent from "./PromoteUserComponent.js";
+import { Link } from "react-router-dom";
 
 const UserComponent = () => {
   const [users, setUsers] = useState([]);
@@ -18,13 +19,21 @@ const UserComponent = () => {
   }, []);
 
   return (
-    <div>
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search query ..."
-        onChange={(e) => setQuery(e.target.value)}
-      />
+    <div className="container">
+      <div>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search query ..."
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <Link to="/admin/books">
+          <button className="addbook-btn button-effect">Books</button>
+        </Link>
+        <Link to="/admin/users">
+          <button className="addbook-btn button-effect">Users</button>
+        </Link>
+      </div>
       <div className="grid">
         <table>
           <tbody>
@@ -46,8 +55,8 @@ const UserComponent = () => {
               ))}
           </tbody>
         </table>
-        <PromoteUserComponent />
-        <DeleteUserComponent />
+        {query === "" ? <PromoteUserComponent /> : undefined}
+        {query === "" ? <DeleteUserComponent /> : undefined}
       </div>
     </div>
   );

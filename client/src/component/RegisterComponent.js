@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import CredentialComponent from "./CredentialComponent";
 import authService from "../service/authService";
+import HeaderComponent from "./HeaderComponent";
+import books from "../assets/background-img.jpg";
 
 const RegisterComponent = () => {
   const [credentials, setCredentials] = useState("");
@@ -22,21 +25,25 @@ const RegisterComponent = () => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <h2>Register</h2>
+      <HeaderComponent />
+      <form className="login-container" onSubmit={submitHandler}>
+        <img className="side-img" src={books} alt="books in bookshelf" />
+        <h2 className="login-header">Register</h2>
         <CredentialComponent
           onTextChange={handleChange}
-          nameHolder={"Type your username..."}
-          passwordHolder={"Enter a password..."}
+          nameHolder={"Enter new username"}
+          passwordHolder={"Enter new password"}
         />
         <p>{infoMsg}</p>
-        <p data-testid="sign-up">
-          Already have an account? Sign in&nbsp;
-          <a data-testid="signIn-link" href="login">
-            here!
-          </a>
-        </p>
-        <button type="submit">Register new account</button>
+
+        <button className="login-btn" type="submit">
+          Register
+        </button>
+        <Link to="/login">
+          <button className="login-btn" type="reset">
+            Go to Login
+          </button>
+        </Link>
       </form>
     </div>
   );

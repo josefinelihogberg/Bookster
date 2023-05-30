@@ -1,20 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import memoryService from "../../service/memoryService";
-import LoginComponent from "../LoginComponent";
+import "../main.css";
 
 export default function LogoutComponent() {
   const navigate = useNavigate();
 
   const logout = () => {
-    memoryService.clearLocalValue("JWT_TOKEN");
-    navigate("/login");
+    localStorage.removeItem("JWT_TOKEN");
+
+    setTimeout(() => navigate("/login"), 1000);
   };
 
   return (
-    <div>
-      <button data-testid="signout-btn" onClick={logout}>
-        Sign out
-      </button>
-    </div>
+    <button className="logout-btn button-effect" onClick={logout}>
+      Sign out
+    </button>
   );
 }
