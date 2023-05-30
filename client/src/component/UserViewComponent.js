@@ -1,5 +1,4 @@
-import React from 'react'
-import LogoutComponent from './abstract/LogoutComponent'
+import React from 'react';
 import AccountComponent from './AccountComponent'
 import BooksComponent from './BooksComponent'
 import OrderComponent from './OrderComponent'

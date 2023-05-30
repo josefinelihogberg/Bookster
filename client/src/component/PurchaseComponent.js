@@ -15,7 +15,6 @@ const PurchaseComponent = () => {
         };
         fetchUsers();
     }, [username]);
-    console.log(purchases);
     return (
         <div>
             <p>Purchases:</p>

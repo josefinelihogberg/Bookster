@@ -8,7 +8,6 @@ import PromoteUserComponent from './PromoteUserComponent.js';
 const UserComponent = () => {
     const [users, setUsers] = useState([]);
     const [query, setQuery] = useState('');
-    const [username, setUsername] = useState('');
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -20,25 +19,16 @@ const UserComponent = () => {
 
 
     }, []);
-    // console.log(users[0].purchases);
-
-    // const setPurchases = () => {
-    //     if (users.purchases === undefined) {
-    //         return users.purchases = 0;
-    //     } else {
-    //         return users.purchases.length;
-    //     }
-    // }
 
     return (
         <div>
-            <input
-                type="text"
-                className="search-input"
-                placeholder="Search query ..."
-                onChange={(e) => setQuery(e.target.value)}
-            />
             <div className='grid'>
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search query ..."
+                    onChange={(event) => setQuery(event.target.value)}
+                />
                 <table>
                     <tbody>
                         <tr>
@@ -48,13 +38,13 @@ const UserComponent = () => {
                         </tr>
                         {users
                             .filter(
-                                (user) => query === "" || user.username.toLowerCase().includes(query.toLowerCase())
+                                (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
                             )
                             .map((user) => (
                                 <tr key={user.username}>
                                     <td>{user.username}</td>
                                     <td>{user.role}</td>
-                                    <td>{user.role}</td>
+                                    <td>{user.purchases === undefined ? "0" : user.purchases.length}</td>
                                 </tr>
                             ))}
                     </tbody>

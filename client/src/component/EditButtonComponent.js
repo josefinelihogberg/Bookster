@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import adminService from '../service/adminService';
 import bookService from '../service/bookService';
 import InputComponent from './abstract/InputComponent';
-import './testing.css';
+import './main.css';
 
 //Edits a book from the db when button is pushed - might need a warning/do you want to remove the book.
 
@@ -58,11 +58,12 @@ const EditButtonComponent = () => {
 
   return (
     <div>
-      <div className='delete-form'>
+      <div className='btn-columns  btn-fix'>
         {books.map((book) => (
           <button className='delete-btn' key={book.title} type="submit" name="title" onClick={(e) => handleButtonClick(e, 'value')} value={book.title}>Edit</button>))}
+        {/* <button bookTitle={book.title}>Edit</button> */}
       </div>
-      {activeEdit === "EditBooks" && <div className='position'>
+      {activeEdit === "EditBooks" && <div className='pop-up'>
         <form onSubmit={submitHandler}>
           <h3>Edit Book</h3>
           <InputComponent oldName={"/  " + oldBook.title} fieldName="Title" customName="title" onTextChange={handleChange} />

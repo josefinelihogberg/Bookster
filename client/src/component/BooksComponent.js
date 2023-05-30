@@ -2,7 +2,8 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import bookService from '../service/bookService.js';
 import adminService from '../service/adminService.js';
-import './testing.css';
+import './main.css';
+import EditButtonComponent from './EditButtonComponent.js';
 
 //Fetches all the books in the database and shows title, author and quantity
 
@@ -33,12 +34,12 @@ const BooksComponent = () => {
 
     return (
         <div>
-            <input
+            {/* <input
                 type="text"
                 className="search-input"
                 placeholder="Search query ..."
                 onChange={(event) => setQuery(event.target.value)}
-            />
+            /> */}
             <div className='grid'>
                 <table>
                     <thead>
@@ -51,14 +52,15 @@ const BooksComponent = () => {
                     </thead>
                     <tbody>
                         {books
-                            .filter(
-                                (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
-                            )
+                            // .filter(
+                            //     (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
+                            // )
                             .map((book) => (
                                 <tr key={book.title}>
                                     <td>{book.title}</td>
                                     <td>{book.author}</td>
                                     <td>{book.quantity}</td>
+                                    {/* <td><EditButtonComponent bookTitle={book.title} /></td> */}
                                     {/* <td>
                                         <button onClick={() => deleteBook(book.title)}>Delete</button>
                                     </td> */}

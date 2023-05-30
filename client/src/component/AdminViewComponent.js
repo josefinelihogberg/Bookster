@@ -11,9 +11,10 @@ import PurchaseComponent from './PurchaseComponent'
 import OrderComponent from './OrderComponent'
 
 //Holds/shows all the component that the admin will see
+//user.purchases === undefined ? "0" : user.purchases.length
 
 const AdminViewComponent = () => {
-    const [active, setActive] = useState('Books');
+    const [active, setActive] = useState('Books' || 'Users');
     const [activeBook, setActiveBook] = useState('');
 
     const removePopUp = () => {

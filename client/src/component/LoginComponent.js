@@ -5,6 +5,8 @@ import memoryService from "../service/memoryService.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import userService from "../service/userService.js";
+import HeaderComponent from "./HeaderComponent.js";
+import background from "../assets/background-img.jpg";
 
 export default function LoginComponent() {
   const [credential, setCredential] = useState({ username: "", password: "" });
@@ -40,27 +42,28 @@ export default function LoginComponent() {
 
   return (
     <div>
-      <form data-testid="login-form" onSubmit={submitHandler}>
-        <h2>Login</h2>
-        <CredentialComponent
-          onTextChange={handleChange}
-          nameHolder={"Username"}
-          passwordHolder={"Password"}
-        />
-        <p>{infoMessage}</p>
-        <p data-testid="sign-up">
-          No account? Sign up
-          <a data-testid="signup-link" href="register">
-            here!
-          </a>
-        </p>
-        <button data-testid="login-btn" type="submit">
-          Sign in
-        </button>
-        <Link to="/guest">
-          <button data-testid="proceed-btn">Proceed as guest user</button>
-        </Link>
-      </form>
-    </div>
+      <div className="container">
+        <HeaderComponent />
+        <form className="login-container" data-testid="login-form" onSubmit={submitHandler}>
+          <img className='bg-img' src={background} alt="Planet in space" />
+          <h2 className="login-header">Login</h2>
+          <CredentialComponent
+            onTextChange={handleChange}
+            nameHolder={"Username"}
+            passwordHolder={"Password"}
+          />
+          <p className="info-message">{infoMessage}</p>
+          <p className="info-text" data-testid="sign-up">
+            No account? Sign up <a data-testid="signup-link" href="register"> here</a>
+          </p>
+          <button className="login-btn" data-testid="login-btn" type="submit">
+            Sign in
+          </button>
+          <Link to="/guest">
+            <button className="login-btn" data-testid="proceed-btn">Guest user</button>
+          </Link>
+        </form>
+      </div>
+    </div >
   );
 }

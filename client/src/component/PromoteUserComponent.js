@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import adminService from '../service/adminService';
-import PopUpComponent from './PopUpComponent';
-import './testing.css';
+import PopUpComponent from '../component/abstract/PopUpComponent';
+import './main.css';
 
 //Promotes a user from the db - might need a warning/do you want to delete user
 
@@ -14,7 +14,6 @@ const PromoteUserComponent = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       let data = await adminService.getUsers();
-      console.log(data)
       setUsersArray(data.users);
     }
     fetchUsers();
@@ -24,12 +23,12 @@ const PromoteUserComponent = () => {
     let resp = await adminService.promoteUser({ username: user });
     console.log(resp);
     setActive('');
+    window.location.reload();
   }
 
   const handleChange = (e) => {
     e.preventDefault();
     setActive("Popup");
-    console.log(e.target.value);
     setUser(e.target.value);
   }
 
@@ -41,7 +40,7 @@ const PromoteUserComponent = () => {
   return (
     <>
       <div>
-        <form className='delete-form'>
+        <form className='btn-columns'>
           {usersArray.map((user) => (
             <button key={user.username} type="submit" name="username" onClick={(e) => handleChange(e, 'value')} value={user.username}>Promote</button>))}
         </form>

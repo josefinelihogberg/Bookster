@@ -43,16 +43,20 @@ const performRequest = async (url, method, body) => {
 const getBooks = async () => {
     let resp = await performRequest("http://127.0.0.1:3000/library/books", "GET");
     let data = await resp.json();
-    console.log(resp);
     return data;
 }
 
 const buyBook = async (bookInfo) => {
     let resp = await performRequest("http://127.0.0.1:3000/library/user/books", "POST", bookInfo);
     let data = await resp.json();
-    console.log(resp);
     return data;
 };
+
+async function searchBook(query) {
+    let resp = await performRequest(`http://127.0.0.1:3000/library/books/search?q=${query}`);
+    let data = await resp.json();
+    return data;
+}
 
 // const shortPollGetBook = async () => {
 //     let resp = await performRequest("http://127.0.0.1:3000/library/books", "GET"); 
@@ -82,7 +86,8 @@ const buyBook = async (bookInfo) => {
 
 const bookService = {
     getBooks,
-    buyBook
+    buyBook,
+    searchBook
     // shortPollGetBook
 };
 

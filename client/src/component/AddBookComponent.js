@@ -20,7 +20,7 @@ const AddBookComponent = ({ removeBox }) => {
     }
 
     return (
-        <div>
+        <div className="pop-up">
             <form onSubmit={submitHandler}>
                 <h3>Add Book</h3>
                 <InputComponent fieldName="Title" customName="title" onTextChange={handleChange} />

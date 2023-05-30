@@ -6,6 +6,7 @@ import UserComponent from "../component/UserComponent.js";
 import UserViewComponent from "../component/UserViewComponent.js";
 import AdminViewComponent from "../component/AdminViewComponent.js";
 import GuestViewComponent from "../component/GuestViewComponent.js";
+import AdminUsersComponent from "../component/AdminUsersComponent.js";
 
 const routes = [
   {
@@ -21,16 +22,8 @@ const routes = [
     element: <RegisterComponent />,
   },
   {
-    path: "/profile",
-    element: <ProfileComponent />,
-  },
-  {
     path: "/guest",
     element: <GuestViewComponent />
-  },
-  {
-    path: "/users",
-    element: <UserComponent />
   },
   {
     path: "/user/profile",
@@ -39,6 +32,10 @@ const routes = [
   {
     path: "/admin/profile",
     element: <AdminViewComponent />
+  },
+  {
+    path: "/admin/users",
+    element: <AdminUsersComponent />
   }
 ];
 

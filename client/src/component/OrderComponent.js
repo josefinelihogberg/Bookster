@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import bookService from "../service/bookService";
-import "./testing.css";
+import "./main.css";
 
 const OrderComponent = () => {
     const [quantity, setQuantity] = useState(0);
@@ -15,8 +15,6 @@ const OrderComponent = () => {
         };
         fetchLibrary();
     }, []);
-
-    console.log(books);
 
     const buyBook = async () => {
         const body = {
@@ -54,7 +52,7 @@ const OrderComponent = () => {
                 <button className="increase-btn" onClick={handleIncrement}>
                     +
                 </button>
-                <div className="delete-form">
+                <div className="btn-columns order-btn-fix">
                     {books.map((book) => (
 
 
