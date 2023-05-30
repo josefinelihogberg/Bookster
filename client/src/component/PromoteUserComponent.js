@@ -40,9 +40,9 @@ const PromoteUserComponent = () => {
   return (
     <>
       <div>
-        <form className='btn-columns'>
+        <form className='btn-columns btn-columns-users'>
           {usersArray.map((user) => (
-            <button key={user.username} type="submit" name="username" onClick={(e) => handleChange(e, 'value')} value={user.username}>Promote</button>))}
+            <button className='btn-column promote-btn' key={user.username} type="submit" name="username" onClick={(e) => handleChange(e, 'value')} value={user.username}>Promote</button>))}
         </form>
       </div>
       <div>

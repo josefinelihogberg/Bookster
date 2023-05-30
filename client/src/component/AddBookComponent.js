@@ -22,13 +22,14 @@ const AddBookComponent = ({ removeBox }) => {
     return (
         <div className="pop-up">
             <form onSubmit={submitHandler}>
-                <h3>Add Book</h3>
+                <h3 className="pop-up-header">Add Book</h3>
                 <InputComponent fieldName="Title" customName="title" onTextChange={handleChange} />
                 <InputComponent fieldName="Author" customName="author" onTextChange={handleChange} />
                 <InputComponent fieldName="Quantity" customName="quantity" onTextChange={handleChange} />
-
-                <button type="submit">Save changes</button>
-                <button type="reset" onClick={(e) => { removeBox() }}>Discard changes</button>
+                <div className='flex'>
+                    <button className="pop-up-btn button-effect" type="submit">Save changes</button>
+                    <button className="pop-up-btn button-effect" type="reset" onClick={(e) => { removeBox() }}>Discard changes</button>
+                </div>
             </form>
         </div>
     )

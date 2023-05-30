@@ -1,15 +1,21 @@
 import React from 'react'
 import BooksComponent from './BooksComponent'
 import { Link } from 'react-router-dom';
+import HeaderComponent from './HeaderComponent';
 
 const GuestViewComponent = () => {
     return (
-        <div>
-            <h3>Browsing as guest</h3>
-            <Link to="/login">
-                <button>Sign In</button>
-            </Link>
-            <BooksComponent />
+        <div className="page-container">
+            <HeaderComponent />
+            <div className="grid align-right">
+                <p className="guest-text"> Browsing as guest</p>
+                <Link to="/login">
+                    <button className='login-btn button-'>Sign In</button>
+                </Link>
+            </div>
+            <div className="container center">
+                <BooksComponent />
+            </div>
         </div>
     )
 }

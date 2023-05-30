@@ -3,7 +3,7 @@ import AccountComponent from './AccountComponent'
 import AddBookComponent from './AddBookComponent'
 import BooksComponent from './BooksComponent'
 import DeleteBooksComponent from './DeleteBooksComponent'
-import EditButtonComponent from './EditButtonComponent'
+import EditButtonComponent from './EditBooksComponent'
 import SearchComponent from './SearchComponent'
 import UserComponent from './UserComponent'
 import { useState } from 'react';

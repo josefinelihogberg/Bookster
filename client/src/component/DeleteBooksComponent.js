@@ -44,7 +44,7 @@ const DeleteBooksComponent = () => {
     <div>
       <form className='btn-columns btn-fix'>
         {books.map((book) => (
-          <button className='delete-btn' key={book.title} type="submit" name="title" onClick={(e) => handleChange(e, 'value')} value={book.title}>Delete</button>))}
+          <button className='btn-column' key={book.title} type="submit" name="title" onClick={(e) => handleChange(e, 'value')} value={book.title}>Delete</button>))}
       </form>
       <div>
         {active === "Popup" && <PopUpComponent onOkClick={(e) => submitHandler} onCancelClick={(e) => removePopUp} insertText={"Are you sure you want to delete this book?"} />}

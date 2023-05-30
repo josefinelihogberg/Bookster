@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import adminService from '../service/adminService.js';
 import DeleteUserComponent from './DeleteUserComponent.js';
 import PromoteUserComponent from './PromoteUserComponent.js';
+import { Link } from 'react-router-dom';
 
 
 const UserComponent = () => {
@@ -21,14 +22,22 @@ const UserComponent = () => {
     }, []);
 
     return (
-        <div>
-            <div className='grid'>
+        <div className='container'>
+            <div>
                 <input
                     type="text"
                     className="search-input"
                     placeholder="Search query ..."
                     onChange={(event) => setQuery(event.target.value)}
                 />
+                <Link to="/admin/books">
+                    <button className="addbook-btn button-effect">Books</button>
+                </Link>
+                <Link to="/admin/users">
+                    <button className="addbook-btn button-effect">Users</button>
+                </Link>
+            </div>
+            <div className='grid'>
                 <table>
                     <tbody>
                         <tr>
@@ -38,7 +47,7 @@ const UserComponent = () => {
                         </tr>
                         {users
                             .filter(
-                                (book) => query === "" || book.title.toLowerCase().includes(query.toLowerCase())
+                                (user) => query === "" || user.username.toLowerCase().includes(query.toLowerCase())
                             )
                             .map((user) => (
                                 <tr key={user.username}>
@@ -49,8 +58,8 @@ const UserComponent = () => {
                             ))}
                     </tbody>
                 </table>
-                <PromoteUserComponent />
-                <DeleteUserComponent />
+                {query === "" ? <PromoteUserComponent /> : undefined}
+                {query === "" ? <DeleteUserComponent /> : undefined}
             </div>
         </div>
     )

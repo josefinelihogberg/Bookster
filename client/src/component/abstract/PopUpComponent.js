@@ -1,12 +1,15 @@
 import React from 'react'
+import '../main.css';
 
 const PopUpComponent = ({ onOkClick, onCancelClick, insertText }) => {
 
     return (
         <div className='pop-up'>
-            <p>{insertText}</p>
-            <button onClick={onOkClick()}>OK</button>
-            <button onClick={onCancelClick()}>Cancel</button>
+            <p className='pop-up-text'>{insertText}</p>
+            <div className='flex'>
+                <button className="pop-up-btn button-effect" onClick={onOkClick()}>OK</button>
+                <button className="pop-up-btn button-effect" onClick={onCancelClick()}>Cancel</button>
+            </div>
         </div>
     )
 }

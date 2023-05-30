@@ -1,6 +1,5 @@
 import { useState } from "react";
 import bookService from "../service/bookService";
-import userService from "../service/userService";
 
 const SearchComponent = () => {
   const [query, setQuery] = useState("");
@@ -12,10 +11,6 @@ const SearchComponent = () => {
     if (query ? '' : setFoundBook(''));
   }
   searchBooks(query);
-
-  const searchUser = async (query) => {
-    const resp = await userService.
-  }
 
   return (
     <>

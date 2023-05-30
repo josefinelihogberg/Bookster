@@ -60,18 +60,19 @@ const EditButtonComponent = () => {
     <div>
       <div className='btn-columns  btn-fix'>
         {books.map((book) => (
-          <button className='delete-btn' key={book.title} type="submit" name="title" onClick={(e) => handleButtonClick(e, 'value')} value={book.title}>Edit</button>))}
+          <button className='btn-column' key={book.title} type="submit" name="title" onClick={(e) => handleButtonClick(e, 'value')} value={book.title}>Edit</button>))}
         {/* <button bookTitle={book.title}>Edit</button> */}
       </div>
       {activeEdit === "EditBooks" && <div className='pop-up'>
         <form onSubmit={submitHandler}>
-          <h3>Edit Book</h3>
+          <h3 className="pop-up-header">Edit Book</h3>
           <InputComponent oldName={"/  " + oldBook.title} fieldName="Title" customName="title" onTextChange={handleChange} />
           <InputComponent oldName={oldBook.author} fieldName="Author" customName="author" onTextChange={handleChange} />
           <InputComponent oldName={oldBook.quantity} fieldName="Quantity" customName="quantity" onTextChange={handleChange} />
-
-          <button type="submit">Save changes</button>
-          <button type="reset" onClick={(e) => removeBox()}>Discard changes</button>
+          <div className='flex'>
+            <button className="pop-up-btn button-effect" type="submit">Save changes</button>
+            <button className="pop-up-btn button-effect" type="reset" onClick={(e) => removeBox()}>Discard changes</button>
+          </div>
         </form></div>}
     </div>
   )

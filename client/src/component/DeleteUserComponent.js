@@ -42,9 +42,9 @@ const DeleteUserComponent = () => {
 
   return (
     <div>
-      <form className='btn-columns'>
+      <form className='btn-columns btn-columns-users'>
         {usersArray.map((user) => (
-          <button key={user.username} type="submit" name="username" onClick={(e) => handleChange(e, 'value')} value={user.username}>Delete</button>))}
+          <button className='btn-column delete-btn' key={user.username} type="submit" name="username" onClick={(e) => handleChange(e, 'value')} value={user.username}>Delete</button>))}
       </form>
       <div>
         {active === "Popup" && <PopUpComponent onOkClick={(e) => submitHandler} onCancelClick={(e) => removePopUp} insertText={"Are you sure you want to delete user " + user + "?"} />}

@@ -1,15 +1,16 @@
 import React from 'react'
 import AccountComponent from './AccountComponent'
-import SearchComponent from './SearchComponent'
 import UserComponent from './UserComponent'
+import HeaderComponent from './HeaderComponent'
 
 const AdminUsersComponent = () => {
     return (
-        <div>
+        <div className="page-container">
+            <HeaderComponent />
             <AccountComponent />
-            <SearchComponent />
-            <UserComponent />
-
+            <div className="center">
+                <UserComponent />
+            </div>
         </div>
     )
 }
