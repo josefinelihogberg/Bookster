@@ -27,15 +27,17 @@ const RegisterComponent = () => {
         <h2>Register</h2>
         <CredentialComponent
           onTextChange={handleChange}
-          nameHolder={"Enter new username"}
-          passwordHolder={"Enter new password"}
+          nameHolder={"Type your username..."}
+          passwordHolder={"Enter a password..."}
         />
         <p>{infoMsg}</p>
-
-        <button type="submit">Register</button>
-        <Link to="/login">
-          <button type="reset">Go to Login</button>
-        </Link>
+        <p data-testid="sign-up">
+          Already have an account? Sign in&nbsp;
+          <a data-testid="signIn-link" href="login">
+            here!
+          </a>
+        </p>
+        <button type="submit">Register new account</button>
       </form>
     </div>
   );

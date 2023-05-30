@@ -44,12 +44,12 @@ export default function LoginComponent() {
         <h2>Login</h2>
         <CredentialComponent
           onTextChange={handleChange}
-          nameHolder={"Username"}
-          passwordHolder={"Password"}
+          nameHolder={"Type your username..."}
+          passwordHolder={"Type your password..."}
         />
         <p>{infoMessage}</p>
         <p data-testid="sign-up">
-          No account? Sign up
+          No account? Sign up&nbsp;
           <a data-testid="signup-link" href="register">
             here!
           </a>

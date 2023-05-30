@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import LogoutComponent from "./abstract/LogoutComponent";
 import AccountComponent from "./AccountComponent";
 import bookService from "../service/bookService.js";
-import adminService from "../service/adminService.js";
 import "./testing.css";
 
 const UserViewComponent = () => {
