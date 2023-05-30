@@ -1,14 +1,13 @@
 import React from "react";
 import AccountComponent from "./AccountComponent";
 import AddBookComponent from "./AddBookComponent";
-import BooksComponent from "./BooksComponent";
+import AdminBooksComponent from "./AdminBooksComponent";
 import DeleteBooksComponent from "./DeleteBooksComponent";
 import EditButtonComponent from "./EditButtonComponent";
 import SearchComponent from "./SearchComponent";
 import UserComponent from "./UserComponent";
 import { useState } from "react";
 import PurchaseComponent from "./PurchaseComponent";
-import OrderComponent from "./OrderComponent";
 
 //Holds/shows all the component that the admin will see
 
@@ -31,8 +30,7 @@ const AdminViewComponent = () => {
         <>
           {active === "Books" && (
             <div className="grid">
-              <BooksComponent />
-              <OrderComponent />
+              <AdminBooksComponent />
               <EditButtonComponent />
               <DeleteBooksComponent />
             </div>
