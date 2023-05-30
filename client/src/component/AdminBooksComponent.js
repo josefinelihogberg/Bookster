@@ -63,7 +63,6 @@ const AdminBooksComponent = () => {
               <th>Book author</th>
               <th>Availability</th>
               <th>Order</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
