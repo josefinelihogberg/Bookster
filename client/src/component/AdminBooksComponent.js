@@ -63,7 +63,7 @@ const AdminBooksComponent = () => {
         <div className="page-container">
             <HeaderComponent />
             <AccountComponent />
-            <div className="center margin-left">
+            <div className="center">
                 <input
                     type="text"
                     className="search-input"

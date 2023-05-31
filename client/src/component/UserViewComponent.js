@@ -3,13 +3,15 @@ import AccountComponent from "./AccountComponent";
 import bookService from "../service/bookService.js";
 import "./main.css";
 import HeaderComponent from "./HeaderComponent";
-import PurchaseComponent from "./PurchaseComponent";
+import PopUpComponent from "./abstract/PopUpComponent";
+
 
 const UserViewComponent = () => {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
   const [quantity, setQuantity] = useState({});
   const [book, setBook] = useState();
+  const [active, setActive] = useState('');
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -26,11 +28,14 @@ const UserViewComponent = () => {
     };
 
     let resp = await bookService.buyBook(body);
+    setActive('');
     console.log(resp);
   };
 
   const handleChange = (e) => {
+    e.preventDefault();
     setBook(e.target.value);
+    setActive("Popup");
   };
 
   const handleIncrement = (bookTitle, event) => {
@@ -50,6 +55,10 @@ const UserViewComponent = () => {
       }));
     }
   };
+
+  const removePopUp = () => {
+    setActive('');
+  }
 
   return (
     <div className="page-container">
@@ -83,7 +92,7 @@ const UserViewComponent = () => {
                     <td>{book.author}</td>
                     <td>{book.quantity === 0 ? "Out of Stock" : book.quantity + " left"}</td>
                     <td>
-                      <form className="order-form" onSubmit={buyBook}>
+                      <form className="order-form">
                         <button
                           className="reduce-btn"
                           onClick={(e) => handleDecrement(book.title, e)}
@@ -99,6 +108,7 @@ const UserViewComponent = () => {
                         </button>
                         <button
                           key={book.title}
+                          className="btn-order-column"
                           type="submit"
                           name="title"
                           onClick={handleChange}
@@ -113,6 +123,9 @@ const UserViewComponent = () => {
                 ))}
             </tbody>
           </table>
+          <div>
+            {active === "Popup" && <PopUpComponent onOkClick={(e) => buyBook} onCancelClick={(e) => removePopUp} insertText={"You are purchasing " + quantity[book] + " book with the title " + book} />}
+          </div>
         </div>
       </div>
     </div>
