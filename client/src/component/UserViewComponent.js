@@ -29,7 +29,9 @@ const UserViewComponent = () => {
 
     let resp = await bookService.buyBook(body);
     setActive('');
+    setQuantity('');
     console.log(resp);
+    window.location.reload();
   };
 
   const handleChange = (e) => {

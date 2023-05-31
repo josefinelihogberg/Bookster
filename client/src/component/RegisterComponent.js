@@ -24,7 +24,7 @@ const RegisterComponent = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <HeaderComponent />
       <form className="login-container" onSubmit={submitHandler}>
         <img className='side-img' src={books} alt="books in bookshelf" />

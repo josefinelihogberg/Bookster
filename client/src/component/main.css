@@ -42,6 +42,13 @@
     -webkit-text-fill-color: transparent;
 }
 
+.top-left {
+    position: absolute;
+    top: 1; 
+    left: 1; 
+    border: 1px solid black; 
+}
+
 .header-text {
     position: absolute;
     top: 3.9%;
@@ -109,6 +116,7 @@
 
 .button-effect {
     color: #000;
+    border: 3px solid #42d2d7c1;
     background-image: -webkit-linear-gradient(30deg, #18ccd2,#c5e9ea 50%, transparent 50%);
     background-image: linear-gradient(30deg,#18ccd2,#B0E1E3 50%, transparent 50%);
     background-size: 500px;
@@ -120,6 +128,7 @@
 
   .button-effect-books {
     color: #000;
+    border: 3px solid #ff7f50b7;
     background-image: -webkit-linear-gradient(30deg, #ff7f50,#ffc9b6 50%, transparent 50%);
     background-image: linear-gradient(30deg,#ff7f50,#ffc9b6 50%, transparent 50%);
     background-size: 500px;
@@ -291,11 +300,11 @@ tr:nth-child(odd) {
 }
 
 /* for laptops */
-
 @media screen and (min-width: 1000px) and (max-width: 1500px) {
      
         .center {
             width: 90%;
+            height: 90vh; 
         }
 
         .header-title {

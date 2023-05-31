@@ -8,6 +8,7 @@ import PurchaseComponent from "./PurchaseComponent.js";
 import HeaderComponent from "./HeaderComponent.js";
 import EditBooksComponent from "./EditBooksComponent.js";
 import DeleteBooksComponent from "./DeleteBooksComponent.js";
+import PopUpComponent from "./abstract/PopUpComponent.js";
 import { Link } from 'react-router-dom';
 
 const AdminBooksComponent = () => {
@@ -15,7 +16,8 @@ const AdminBooksComponent = () => {
     const [query, setQuery] = useState("");
     const [quantity, setQuantity] = useState({});
     const [book, setBook] = useState();
-    const [activeBook, setActiveBook] = useState('');
+    const [activePopup, setActivePopup] = useState('');
+    const [active, setActive] = useState('');
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -24,6 +26,7 @@ const AdminBooksComponent = () => {
         };
         fetchBooks();
     }, []);
+
     const buyBook = async () => {
         const body = {
             title: book,
@@ -32,10 +35,13 @@ const AdminBooksComponent = () => {
 
         let resp = await bookService.buyBook(body);
         console.log(resp);
+        window.location.reload();
     };
 
     const handleChange = (e) => {
+        e.preventDefault();
         setBook(e.target.value);
+        setActive("Popup")
     };
 
     const handleIncrement = (bookTitle, event) => {
@@ -57,7 +63,8 @@ const AdminBooksComponent = () => {
     };
 
     const removePopUp = () => {
-        setActiveBook('');
+        setActivePopup('');
+        setActive('');
     }
     return (
         <div className="page-container">
@@ -70,7 +77,7 @@ const AdminBooksComponent = () => {
                     placeholder="Search query ..."
                     onChange={(event) => setQuery(event.target.value)}
                 />
-                <button className="addbook-btn button-effect" onClick={() => setActiveBook("AddBook")}>Add book</button>
+                <button className="addbook-btn button-effect" onClick={() => setActivePopup("AddBook")}>Add book</button>
                 <div className="position-end">
                     <Link to="/admin/books">
                         <button className="addbook-btn button-effect-books">Books</button>
@@ -100,7 +107,7 @@ const AdminBooksComponent = () => {
                                         <td>{book.author}</td>
                                         <td>{book.quantity === 0 ? "Out of Stock" : book.quantity + " left"}</td>
                                         <td>
-                                            <form className="order-form" onSubmit={buyBook}>
+                                            <form className="order-form">
                                                 <button
                                                     className="reduce-btn"
                                                     onClick={(e) => handleDecrement(book.title, e)}
@@ -137,7 +144,8 @@ const AdminBooksComponent = () => {
                     </div>
                 </div>
                 <div>
-                    {activeBook === "AddBook" && <AddBookComponent removeBox={removePopUp} />}
+                    {activePopup === "AddBook" && <AddBookComponent removeBox={removePopUp} />}
+                    {active === "Popup" && <PopUpComponent onOkClick={(e) => buyBook} onCancelClick={(e) => removePopUp} insertText={"You are purchasing " + quantity[book] + " book with the title " + book} />}
                 </div>
             </div>
         </div>
