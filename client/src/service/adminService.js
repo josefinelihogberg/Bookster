@@ -1,17 +1,5 @@
 import memoryService from "./memoryService";
 
-// let itemsVersionUUID = -1;
-// let startTime = Date.now;
-
-// const backoff = {
-//     timeout: 3000,
-//     miss: {
-//         min: 4, 
-//         max: 10, 
-//         count: 0,
-//     },
-//     multiplier: 2000
-// }
 
 const buildPostFetchOptions = (body) => ({
     method: "POST",
@@ -23,7 +11,7 @@ const buildPostFetchOptions = (body) => ({
 });
 
 const buildDeleteFetchOption = (body) => ({
-    method: "DELETE", 
+    method: "DELETE",
     body: JSON.stringify(body),
     headers: {
         "Content-Type": "application/json",
@@ -32,7 +20,7 @@ const buildDeleteFetchOption = (body) => ({
 })
 
 const buildPatchFetchOption = (body) => ({
-    method: "PATCH", 
+    method: "PATCH",
     body: JSON.stringify(body),
     headers: {
         "Content-Type": "application/json",
@@ -42,7 +30,7 @@ const buildPatchFetchOption = (body) => ({
 })
 
 const buildPutFetchOption = (body) => ({
-    method: "PUT", 
+    method: "PUT",
     body: JSON.stringify(body),
     headers: {
         "Content-Type": "application/json",
@@ -59,8 +47,7 @@ const buildGetFetchOptions = () => ({
 
 const performRequest = async (url, method, body) => {
     let options = undefined;
-
-    if(method === "GET") {
+    if (method === "GET") {
         options = buildGetFetchOptions();
     } else if (method === "POST") {
         options = buildPostFetchOptions(body);
@@ -84,21 +71,21 @@ const getUsers = async () => {
 }
 
 const promoteUser = async (username) => {
-    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PUT", username); 
+    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PUT", username);
     let data = await resp.json();
 
     console.log(data);
 }
 
 const deleteUser = async (username) => {
-    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "DELETE", username); 
+    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "DELETE", username);
     let data = await resp.json();
 
     console.log(data);
 }
 
 const addBook = async (book) => {
-    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "POST", book); 
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "POST", book);
     let data = await resp.json();
 
     console.log(data);
@@ -106,7 +93,7 @@ const addBook = async (book) => {
 
 const updateBook = async (book) => {
     console.log(book);
-    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "PUT", book); 
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "PUT", book);
     let data = await resp.text();
 
     console.log(data);
@@ -114,58 +101,23 @@ const updateBook = async (book) => {
 
 const deleteBook = async (title) => {
     console.log(title);
-    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "DELETE", title); 
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "DELETE", title);
     let data = await resp.json();
 
     console.log(data);
 }
 
 
-
-// const shortPollAddBook = async (book) => {
-//     let resp = await performRequest("http://127.0.0.1:3000/admin/books", "POST", book); 
-//     let data = resp.json();
-//     if (data.version === itemsVersionUUID) {
-//         console.log("miss");
-//         if(backoff.miss.count <= backoff.miss.max) {
-//             backoff.miss.count += 1;
-//         }
-//         } else {
-//         backoff.miss.count = 0; 
-//         itemsVersionUUID = data.version;
-//         console.log(data);
-//         }
-    
-//     let timeoutMs = backoff.timeout;
-
-//     if (backoff.miss.count > backoff.miss.min) {
-//         timeoutMs = timeoutMs + (backoff.miss.count * backoff.multiplier);
-//     }
-
-//     console.log((Date.now()) - startTime, "ms");
-//     setTimeout(shortPollAddBook, timeoutMs);
-//     startTime = Date.now();
-    
-// }
-
 const adminService = {
     getUsers,
     addBook,
     updateBook,
-    deleteBook, 
+    deleteBook,
     promoteUser,
-    deleteUser,
-    // shortPollAddBook
+    deleteUser
 };
 
 export default adminService;
 
-//This should be in adminService ->
-//   .get("/users", adminController.getAllUsers) - done
-//   .post("/books", adminController.addBook) - working
-//   .put("/users", adminController.addAdmin)
-//   .put("/books", adminController.updateBook)
-//   .delete("/books", adminController.deleteBook)
-//   .delete("/users", adminController.deleteUser);
 
 

@@ -5,6 +5,7 @@ import DeleteUserComponent from './DeleteUserComponent.js';
 import PromoteUserComponent from './PromoteUserComponent.js';
 import { Link } from 'react-router-dom';
 
+//fetches the users to be rendered in AdminUsersView
 
 const UserComponent = () => {
     const [users, setUsers] = useState([]);
@@ -17,8 +18,6 @@ const UserComponent = () => {
             setUsers(data.users);
         }
         fetchUsers();
-
-
     }, []);
 
     return (

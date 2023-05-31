@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import AccountComponent from "./AccountComponent";
 import bookService from "../service/bookService.js";
 import "./main.css";
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "./abstract/HeaderComponent";
 import PopUpComponent from "./abstract/PopUpComponent";
 
+//The view for logged in with role "USER"
 
 const UserViewComponent = () => {
   const [books, setBooks] = useState([]);
@@ -60,6 +61,7 @@ const UserViewComponent = () => {
 
   const removePopUp = () => {
     setActive('');
+    setQuantity('');
   }
 
   return (

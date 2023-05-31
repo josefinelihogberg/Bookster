@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CredentialComponent from './CredentialComponent';
 import authService from '../service/authService';
-import HeaderComponent from './HeaderComponent';
+import HeaderComponent from './abstract/HeaderComponent';
 import books from "../assets/background-img.jpg";
+
+//Register a new user in the db
 
 const RegisterComponent = () => {
   const [credentials, setCredentials] = useState('');

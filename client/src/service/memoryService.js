@@ -14,5 +14,9 @@ function getLocalValue(ref) {
   return JSON.parse(value);
 }
 
-const memoryService = { saveLocalValue, getLocalValue };
+function clearLocalValue(ref) {
+  localStorage.removeItem(ref);
+}
+
+const memoryService = { saveLocalValue, getLocalValue, clearLocalValue };
 export default memoryService;

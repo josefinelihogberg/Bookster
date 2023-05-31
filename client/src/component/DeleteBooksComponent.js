@@ -5,7 +5,7 @@ import bookService from '../service/bookService';
 import PopUpComponent from './abstract/PopUpComponent';
 import './main.css';
 
-//Delete a book from the db when button is pushed - might need a warning/do you want to remove the book.
+//Delete a book from the db when button is pressed - shows a confirmation as popup
 
 const DeleteBooksComponent = () => {
   const [books, setBooks] = useState([]);

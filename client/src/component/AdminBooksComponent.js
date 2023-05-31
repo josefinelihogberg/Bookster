@@ -4,12 +4,13 @@ import bookService from "../service/bookService.js";
 import AccountComponent from "./AccountComponent.js";
 import "./main.css";
 import AddBookComponent from "./AddBookComponent.js";
-import PurchaseComponent from "./PurchaseComponent.js";
-import HeaderComponent from "./HeaderComponent.js";
+import HeaderComponent from "./abstract/HeaderComponent.js";
 import EditBooksComponent from "./EditBooksComponent.js";
 import DeleteBooksComponent from "./DeleteBooksComponent.js";
 import PopUpComponent from "./abstract/PopUpComponent.js";
 import { Link } from 'react-router-dom';
+
+//Admin view of bookservices when logged in as "ADMIN"
 
 const AdminBooksComponent = () => {
     const [books, setBooks] = useState([]);
@@ -65,6 +66,7 @@ const AdminBooksComponent = () => {
     const removePopUp = () => {
         setActivePopup('');
         setActive('');
+        setQuantity('');
     }
     return (
         <div className="page-container">

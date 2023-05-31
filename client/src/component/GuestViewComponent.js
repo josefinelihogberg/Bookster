@@ -1,7 +1,9 @@
 import React from 'react'
 import BooksComponent from './BooksComponent'
 import { Link } from 'react-router-dom';
-import HeaderComponent from './HeaderComponent';
+import HeaderComponent from './abstract/HeaderComponent';
+
+//Displays all the components for the guest view
 
 const GuestViewComponent = () => {
     return (

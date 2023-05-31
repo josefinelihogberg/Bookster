@@ -4,7 +4,7 @@ import adminService from '../service/adminService';
 import PopUpComponent from './abstract/PopUpComponent'
 import './main.css';
 
-//Deletes a user from the db - might need a warning/do you want to delete user
+//Deletes a user from the db, shows a confirmation as popup
 
 const DeleteUserComponent = () => {
   const [usersArray, setUsersArray] = useState([]);

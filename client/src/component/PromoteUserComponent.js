@@ -4,7 +4,7 @@ import adminService from '../service/adminService';
 import PopUpComponent from '../component/abstract/PopUpComponent';
 import './main.css';
 
-//Promotes a user from the db - might need a warning/do you want to delete user
+//Promotes a user from the db - shows a confirmation as popup
 
 const PromoteUserComponent = () => {
   const [usersArray, setUsersArray] = useState([]);
