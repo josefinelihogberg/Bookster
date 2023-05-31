@@ -289,3 +289,31 @@ tr:nth-child(odd) {
     text-align: center;
     font-size: 1.8em;
 }
+
+/* for laptops */
+
+@media screen and (min-width: 1000px) and (max-width: 1500px) {
+     
+        .center {
+            width: 90%;
+        }
+
+        .header-title {
+            margin: 15px 1em; 
+        }
+        
+        .position-end { 
+            right: 1em; 
+        }
+
+        td, tr {
+            font-size: 0.9em;
+        }
+
+        .align-right {
+            top: 3%; 
+            right: 3em; 
+        }
+    
+
+}
