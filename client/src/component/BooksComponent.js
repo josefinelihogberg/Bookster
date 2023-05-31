@@ -11,8 +11,7 @@ const BooksComponent = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      let data = await bookService.shortPollGetBook();
-      // let data = await bookService.getBooks();
+      let data = await bookService.getBooks();
       console.log(data);
       setBooks(data.books);
     };
