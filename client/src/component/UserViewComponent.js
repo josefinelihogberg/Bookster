@@ -3,6 +3,7 @@ import AccountComponent from "./AccountComponent";
 import bookService from "../service/bookService.js";
 import "./main.css";
 import HeaderComponent from "./HeaderComponent";
+import PurchaseComponent from "./PurchaseComponent";
 
 const UserViewComponent = () => {
   const [books, setBooks] = useState([]);

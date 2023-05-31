@@ -11,6 +11,6 @@ export default function LogoutComponent() {
    }
 
    return (
-      <button className="logout-btn button-effect" onClick={logout}>Sign out</button>
+      <button data-testid="signout-btn" className="logout-btn button-effect" onClick={logout}>Sign out</button>
    )
 }

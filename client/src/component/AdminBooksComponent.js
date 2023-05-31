@@ -71,12 +71,14 @@ const AdminBooksComponent = () => {
                     onChange={(event) => setQuery(event.target.value)}
                 />
                 <button className="addbook-btn button-effect" onClick={() => setActiveBook("AddBook")}>Add book</button>
-                <Link to="/admin/books">
-                    <button className="addbook-btn button-effect">Books</button>
-                </Link>
-                <Link to="/admin/users">
-                    <button className="addbook-btn button-effect">Users</button>
-                </Link>
+                <div className="position-end">
+                    <Link to="/admin/books">
+                        <button className="addbook-btn button-effect-books">Books</button>
+                    </Link>
+                    <Link to="/admin/users">
+                        <button className="addbook-btn button-effect">Users</button>
+                    </Link>
+                </div>
                 <div className="grid">
                     <table>
                         <thead>
@@ -130,12 +132,12 @@ const AdminBooksComponent = () => {
                         </tbody>
                     </table>
                     <div className='grid'>
-                        <EditBooksComponent /><DeleteBooksComponent />
+                        {query === "" ? <EditBooksComponent /> : undefined}
+                        {query === "" ? <DeleteBooksComponent /> : undefined}
                     </div>
                 </div>
                 <div>
                     {activeBook === "AddBook" && <AddBookComponent removeBox={removePopUp} />}
-                    <PurchaseComponent />
                 </div>
             </div>
         </div>

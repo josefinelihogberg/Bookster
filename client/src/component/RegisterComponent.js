@@ -32,9 +32,9 @@ const RegisterComponent = () => {
         <CredentialComponent onTextChange={handleChange} nameHolder={"Enter new username"} passwordHolder={"Enter new password"} />
         <p>{infoMsg}</p>
 
-        <button className="login-btn" type="submit">Register</button>
+        <button className="login-btn button-effect" type="submit">Register</button>
         <Link to="/login">
-          <button className="login-btn" type="reset">Go to Login</button>
+          <button className="login-btn button-effect" type="reset">Go to Login</button>
         </Link>
 
       </form>
