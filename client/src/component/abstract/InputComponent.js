@@ -1,3 +1,5 @@
+//Simple input components
+
 const InputComponent = ({ fieldName, onTextChange, customName, oldName }) => {
   return (
     <div>

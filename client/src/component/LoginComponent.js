@@ -5,8 +5,10 @@ import memoryService from "../service/memoryService.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import userService from "../service/userService.js";
-import HeaderComponent from "./HeaderComponent.js";
+import HeaderComponent from "../component/abstract/HeaderComponent";
 import books from "../assets/background-img.jpg";
+
+//Login with credential and navigate to different views depending on roles
 
 export default function LoginComponent() {
   const [credential, setCredential] = useState({ username: "", password: "" });

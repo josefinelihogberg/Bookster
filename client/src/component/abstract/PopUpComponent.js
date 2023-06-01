@@ -1,6 +1,8 @@
 import React from "react";
 import "../main.css";
 
+//Reusable confirmation popup
+
 const PopUpComponent = ({ onOkClick, onCancelClick, insertText }) => {
   return (
     <div className="pop-up">

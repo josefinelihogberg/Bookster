@@ -5,6 +5,8 @@ import DeleteUserComponent from "./DeleteUserComponent.js";
 import PromoteUserComponent from "./PromoteUserComponent.js";
 import { Link } from "react-router-dom";
 
+//fetches the users to be rendered in AdminUsersView
+
 const UserComponent = () => {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
@@ -27,12 +29,14 @@ const UserComponent = () => {
           placeholder="Search query ..."
           onChange={(event) => setQuery(event.target.value)}
         />
-        <Link to="/admin/books">
-          <button className="addbook-btn button-effect">Books</button>
-        </Link>
-        <Link to="/admin/users">
-          <button className="addbook-btn button-effect">Users</button>
-        </Link>
+        <div className="position-end">
+          <Link to="/admin/books">
+            <button className="addbook-btn button-effect-books">Books</button>
+          </Link>
+          <Link to="/admin/users">
+            <button className="addbook-btn button-effect">Users</button>
+          </Link>
+        </div>
       </div>
       <div className="grid">
         <table>
@@ -48,9 +52,13 @@ const UserComponent = () => {
               )
               .map((user) => (
                 <tr key={user.username}>
-                  <td>{user.username}</td>
-                  <td>{user.role}</td>
-                  <td>{user.purchases === undefined ? "0" : user.purchases.length}</td>
+                  <td className="td-users">{user.username}</td>
+                  <td className="td-users">{user.role}</td>
+                  <td className="td-users">
+                    {user.purchases === undefined
+                      ? "0 purchases"
+                      : user.purchases.length + " purchases"}
+                  </td>
                 </tr>
               ))}
           </tbody>

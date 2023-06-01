@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CredentialComponent from "./CredentialComponent";
 import authService from "../service/authService";
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "./abstract/HeaderComponent";
 import books from "../assets/background-img.jpg";
+
+//Register a new user in the db
 
 const RegisterComponent = () => {
   const [credentials, setCredentials] = useState("");
@@ -24,7 +26,7 @@ const RegisterComponent = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <HeaderComponent />
       <form className="login-container" onSubmit={submitHandler}>
         <img className="side-img" src={books} alt="books in bookshelf" />
@@ -36,11 +38,11 @@ const RegisterComponent = () => {
         />
         <p>{infoMsg}</p>
 
-        <button className="login-btn" type="submit">
+        <button className="login-btn button-effect" type="submit">
           Register
         </button>
         <Link to="/login">
-          <button className="login-btn" type="reset">
+          <button className="login-btn button-effect" type="reset">
             Go to Login
           </button>
         </Link>

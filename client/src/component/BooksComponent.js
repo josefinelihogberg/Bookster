@@ -3,16 +3,49 @@ import { useEffect, useState } from "react";
 import bookService from "../service/bookService.js";
 import "./main.css";
 
-//Fetches all the books in the database and shows title, author and quantity
+//Shortpolls all the books in the database and shows title, author and quantity to guest-users
 
 const BooksComponent = () => {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
 
+  let itemsVersionUUID = -1;
+  let startTime = Date.now;
+
+  const backoff = {
+    timeout: 3000,
+    miss: {
+      min: 4,
+      max: 10,
+      count: 0,
+    },
+    multiplier: 2000,
+  };
+
   useEffect(() => {
     const fetchBooks = async () => {
       let data = await bookService.getBooks();
       console.log(data);
+      if (data.version === itemsVersionUUID) {
+        console.log("miss");
+        if (backoff.miss.count <= backoff.miss.max) {
+          backoff.miss.count += 1;
+        }
+      } else {
+        backoff.miss.count = 0;
+        itemsVersionUUID = data.version;
+        console.log(data);
+      }
+
+      let timeoutMs = backoff.timeout;
+
+      if (backoff.miss.count > backoff.miss.min) {
+        timeoutMs = timeoutMs + backoff.miss.count * backoff.multiplier;
+      }
+
+      console.log(Date.now() - startTime, "ms");
+      setTimeout(fetchBooks, timeoutMs);
+      startTime = Date.now();
       setBooks(data.books);
     };
     fetchBooks();

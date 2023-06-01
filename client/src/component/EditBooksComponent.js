@@ -5,7 +5,7 @@ import bookService from "../service/bookService";
 import InputComponent from "./abstract/InputComponent";
 import "./main.css";
 
-//Edits a book from the db when button is pushed - might need a warning/do you want to remove the book.
+//Edits a books title, author and/or quantity - shows a confirmation as popup
 
 const EditButtonComponent = () => {
   const [books, setBooks] = useState([]);
